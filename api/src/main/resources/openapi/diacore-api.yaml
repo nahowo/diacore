@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: DiaCore API
+  version: 1.0.0
+  description: 1형 당뇨 관리 플랫폼 DiaCore의 백엔드 API 명세서입니다.
+
+paths:
+  /api/v1/logs/meals:
+    post:
+      summary: 식사(탄수화물) 기록 추가
+      operationId: createMealLog
+      tags:
+        - MealLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MealLogRequest'
+      responses:
+        '200':
+          description: 성공적으로 기록됨
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealLogResponse'
+
+components:
+  schemas:
+    MealLogRequest:
+      type: object
+      required:
+        - userId
+        - timestamp
+        - carbohydrateG
+        - mealType
+      properties:
+        userId:
+          type: integer
+          format: int64
+        timestamp:
+          type: string
+          format: date-time
+        carbohydrateG:
+          type: integer
+          description: 섭취한 탄수화물 질량(g)
+          example: 45
+        mealType:
+          type: string
+          example: BREAKFAST
+        foodDesc:
+          type: string
+          example: "쌀밥 140g, 계란프라이"
+
+    MealLogResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          example: "SUCCESS"

@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+README.md
+pom.xml
+src/main/java/com/diacore/api/model/MealLogRequest.java
+src/main/java/com/diacore/api/model/MealLogResponse.java
+src/main/java/com/diacore/api/operation/ApiApi.java
+src/main/java/com/diacore/api/operation/ApiUtil.java

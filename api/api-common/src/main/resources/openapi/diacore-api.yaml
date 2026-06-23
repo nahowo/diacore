@@ -1,0 +1,332 @@
+openapi: 3.0.3
+info:
+  title: DiaCore Integration API
+  version: 1.0.0
+  description: 1형 당뇨 환자를 위한 데이터 기반 통합 관리 및 예측 플랫폼 DiaCore API 명세서
+
+paths:
+  # ==========================================
+  # Log
+  # ==========================================
+  /api/v1/logs/glucose:
+    post:
+      tags:
+        - Log
+      summary: add glucose log
+      operationId: createGlucoseLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GlucoseLogRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+
+  /api/v1/logs/meals:
+    post:
+      tags:
+        - Log
+      summary: add meal log
+      operationId: createMealLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MealLogRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+
+  /api/v1/logs/insulins:
+    post:
+      tags:
+        - Log
+      summary: add insulin log
+      operationId: createInsulinLog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InsulinLogRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+
+  # ==========================================
+  # Profile
+  # ==========================================
+  /api/v1/profiles/parameters:
+    get:
+      tags:
+        - Profile
+      summary: get therapy parameters
+      operationId: getTherapyParameters
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TherapyParametersResponse'
+    put:
+      tags:
+        - Profile
+      summary: update therapy parameters
+      operationId: updateTherapyParameters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TherapyParametersRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+
+  /api/v1/profiles/recommendations:
+    get:
+      tags:
+        - Profile
+      summary: get therapy parameters recommendation history
+      operationId: getRecommendationHistory
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecommendationResponse'
+
+  # ==========================================
+  # Simulation
+  # ==========================================
+  /api/v1/simulations/exercise:
+    post:
+      tags:
+        - Simulation
+      summary: predict exercise impact
+      operationId: predictExerciseImpact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExerciseRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+
+  /api/v1/simulations/bolus:
+    post:
+      tags:
+        - Simulation
+      summary: calculate bolus
+      operationId: calculateBolus
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BolusRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulationResponse'
+
+components:
+  schemas:
+    CommonResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        status:
+          type: string
+          example: "SUCCESS"
+
+    GlucoseLogRequest:
+      type: object
+      required: [userId, timestamp, value]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        timestamp:
+          type: string
+          format: date-time
+        value:
+          type: integer
+          description: "glucose (mg/dL)"
+        trendArrow:
+          type: string
+          example: "FLAT"
+
+    MealLogRequest:
+      type: object
+      required: [userId, timestamp, carbohydrateG, mealType]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        timestamp:
+          type: string
+          format: date-time
+        carbohydrateG:
+          type: integer
+          description: "carb (g)"
+        mealType:
+          type: string
+          example: "BREAKFAST"
+        foodDesc:
+          type: string
+          example: "사과 1개"
+
+    InsulinLogRequest:
+      type: object
+      required: [userId, timestamp, dose, insulinType]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        timestamp:
+          type: string
+          format: date-time
+        dose:
+          type: number
+          format: float
+          description: "insulin (Unit)"
+        insulinType:
+          type: string
+          example: "RAPID_ACTING"
+
+    TherapyParametersResponse:
+      type: object
+      properties:
+        carbRatio:
+          type: number
+          format: float
+          description: "carb ratio (g/U)"
+        insulinSensitivity:
+          type: number
+          format: float
+          description: "insulin sensitivity (mg/dL/U)"
+
+    TherapyParametersRequest:
+      type: object
+      required: [userId, carbRatio, insulinSensitivity]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        carbRatio:
+          type: number
+          format: float
+        insulinSensitivity:
+          type: number
+          format: float
+
+    RecommendationResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        parameterType:
+          type: string
+          example: "CARB_RATIO"
+        originalValue:
+          type: number
+          format: float
+        recommendedValue:
+          type: number
+          format: float
+        reasonText:
+          type: string
+          example: "최근 7일간 아침 식후 고혈당 지속"
+
+    ExerciseRequest:
+      type: object
+      required: [userId, exerciseType, durationMinutes, currentBg]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        exerciseType:
+          type: string
+          example: "RUNNING"
+        durationMinutes:
+          type: integer
+        currentBg:
+          type: integer
+
+    BolusRequest:
+      type: object
+      required: [userId, currentBg, targetBg, mealCarbsG]
+      properties:
+        userId:
+          type: integer
+          format: int64
+        currentBg:
+          type: integer
+        targetBg:
+          type: integer
+        mealCarbsG:
+          type: integer
+
+    SimulationResponse:
+      type: object
+      properties:
+        predictedBg:
+          type: integer
+          description: "result glucose"
+        recommendedCarbsG:
+          type: integer
+          description: "recommended carb (g)"
+        recommendedBolus:
+          type: number
+          format: float
+          description: "recommended insulin (Unit)"

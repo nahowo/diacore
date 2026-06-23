@@ -2,6 +2,13 @@ plugins {
     id("org.openapi.generator")
 }
 
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.20")
+    compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
+}
+
 openApiGenerate {
     generatorName.set("spring")
     inputSpec.set("$rootDir/api/api-common/src/main/resources/openapi/diacore-api.yaml")
@@ -13,7 +20,8 @@ openApiGenerate {
         "interfaceOnly" to "true",
         "useSpringBoot3" to "true",
         "useJakartaEe" to "true",
-        "openApiNullable" to "false"
+        "openApiNullable" to "false",
+        "useTags" to "true"
     ))
 }
 

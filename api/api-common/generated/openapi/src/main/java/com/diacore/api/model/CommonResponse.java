@@ -14,17 +14,17 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * MealLogResponse
+ * CommonResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-19T14:16:46.640765+09:00[Asia/Seoul]")
-public class MealLogResponse {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
+public class CommonResponse {
 
   private Long id;
 
   private String status;
 
-  public MealLogResponse id(Long id) {
+  public CommonResponse id(Long id) {
     this.id = id;
     return this;
   }
@@ -44,7 +44,7 @@ public class MealLogResponse {
     this.id = id;
   }
 
-  public MealLogResponse status(String status) {
+  public CommonResponse status(String status) {
     this.status = status;
     return this;
   }
@@ -72,9 +72,9 @@ public class MealLogResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MealLogResponse mealLogResponse = (MealLogResponse) o;
-    return Objects.equals(this.id, mealLogResponse.id) &&
-        Objects.equals(this.status, mealLogResponse.status);
+    CommonResponse commonResponse = (CommonResponse) o;
+    return Objects.equals(this.id, commonResponse.id) &&
+        Objects.equals(this.status, commonResponse.status);
   }
 
   @Override
@@ -85,7 +85,7 @@ public class MealLogResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MealLogResponse {\n");
+    sb.append("class CommonResponse {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");

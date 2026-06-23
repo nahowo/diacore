@@ -16,38 +16,35 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * MealLogRequest
+ * GlucoseLogRequest
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
-public class MealLogRequest {
+public class GlucoseLogRequest {
 
   private Long userId;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
 
-  private Integer carbohydrateG;
+  private Integer value;
 
-  private String mealType;
+  private String trendArrow;
 
-  private String foodDesc;
-
-  public MealLogRequest() {
+  public GlucoseLogRequest() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public MealLogRequest(Long userId, OffsetDateTime timestamp, Integer carbohydrateG, String mealType) {
+  public GlucoseLogRequest(Long userId, OffsetDateTime timestamp, Integer value) {
     this.userId = userId;
     this.timestamp = timestamp;
-    this.carbohydrateG = carbohydrateG;
-    this.mealType = mealType;
+    this.value = value;
   }
 
-  public MealLogRequest userId(Long userId) {
+  public GlucoseLogRequest userId(Long userId) {
     this.userId = userId;
     return this;
   }
@@ -67,7 +64,7 @@ public class MealLogRequest {
     this.userId = userId;
   }
 
-  public MealLogRequest timestamp(OffsetDateTime timestamp) {
+  public GlucoseLogRequest timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -87,64 +84,44 @@ public class MealLogRequest {
     this.timestamp = timestamp;
   }
 
-  public MealLogRequest carbohydrateG(Integer carbohydrateG) {
-    this.carbohydrateG = carbohydrateG;
+  public GlucoseLogRequest value(Integer value) {
+    this.value = value;
     return this;
   }
 
   /**
-   * carb (g)
-   * @return carbohydrateG
+   * glucose (mg/dL)
+   * @return value
   */
   @NotNull 
-  @Schema(name = "carbohydrateG", description = "carb (g)", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("carbohydrateG")
-  public Integer getCarbohydrateG() {
-    return carbohydrateG;
+  @Schema(name = "value", description = "glucose (mg/dL)", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("value")
+  public Integer getValue() {
+    return value;
   }
 
-  public void setCarbohydrateG(Integer carbohydrateG) {
-    this.carbohydrateG = carbohydrateG;
+  public void setValue(Integer value) {
+    this.value = value;
   }
 
-  public MealLogRequest mealType(String mealType) {
-    this.mealType = mealType;
+  public GlucoseLogRequest trendArrow(String trendArrow) {
+    this.trendArrow = trendArrow;
     return this;
   }
 
   /**
-   * Get mealType
-   * @return mealType
-  */
-  @NotNull 
-  @Schema(name = "mealType", example = "BREAKFAST", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("mealType")
-  public String getMealType() {
-    return mealType;
-  }
-
-  public void setMealType(String mealType) {
-    this.mealType = mealType;
-  }
-
-  public MealLogRequest foodDesc(String foodDesc) {
-    this.foodDesc = foodDesc;
-    return this;
-  }
-
-  /**
-   * Get foodDesc
-   * @return foodDesc
+   * Get trendArrow
+   * @return trendArrow
   */
   
-  @Schema(name = "foodDesc", example = "사과 1개", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("foodDesc")
-  public String getFoodDesc() {
-    return foodDesc;
+  @Schema(name = "trendArrow", example = "FLAT", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("trendArrow")
+  public String getTrendArrow() {
+    return trendArrow;
   }
 
-  public void setFoodDesc(String foodDesc) {
-    this.foodDesc = foodDesc;
+  public void setTrendArrow(String trendArrow) {
+    this.trendArrow = trendArrow;
   }
 
   @Override
@@ -155,28 +132,26 @@ public class MealLogRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MealLogRequest mealLogRequest = (MealLogRequest) o;
-    return Objects.equals(this.userId, mealLogRequest.userId) &&
-        Objects.equals(this.timestamp, mealLogRequest.timestamp) &&
-        Objects.equals(this.carbohydrateG, mealLogRequest.carbohydrateG) &&
-        Objects.equals(this.mealType, mealLogRequest.mealType) &&
-        Objects.equals(this.foodDesc, mealLogRequest.foodDesc);
+    GlucoseLogRequest glucoseLogRequest = (GlucoseLogRequest) o;
+    return Objects.equals(this.userId, glucoseLogRequest.userId) &&
+        Objects.equals(this.timestamp, glucoseLogRequest.timestamp) &&
+        Objects.equals(this.value, glucoseLogRequest.value) &&
+        Objects.equals(this.trendArrow, glucoseLogRequest.trendArrow);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, timestamp, carbohydrateG, mealType, foodDesc);
+    return Objects.hash(userId, timestamp, value, trendArrow);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MealLogRequest {\n");
+    sb.append("class GlucoseLogRequest {\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
-    sb.append("    carbohydrateG: ").append(toIndentedString(carbohydrateG)).append("\n");
-    sb.append("    mealType: ").append(toIndentedString(mealType)).append("\n");
-    sb.append("    foodDesc: ").append(toIndentedString(foodDesc)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    trendArrow: ").append(toIndentedString(trendArrow)).append("\n");
     sb.append("}");
     return sb.toString();
   }

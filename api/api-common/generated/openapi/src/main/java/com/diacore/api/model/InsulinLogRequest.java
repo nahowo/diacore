@@ -16,38 +16,36 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * MealLogRequest
+ * InsulinLogRequest
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
-public class MealLogRequest {
+public class InsulinLogRequest {
 
   private Long userId;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
 
-  private Integer carbohydrateG;
+  private Float dose;
 
-  private String mealType;
+  private String insulinType;
 
-  private String foodDesc;
-
-  public MealLogRequest() {
+  public InsulinLogRequest() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public MealLogRequest(Long userId, OffsetDateTime timestamp, Integer carbohydrateG, String mealType) {
+  public InsulinLogRequest(Long userId, OffsetDateTime timestamp, Float dose, String insulinType) {
     this.userId = userId;
     this.timestamp = timestamp;
-    this.carbohydrateG = carbohydrateG;
-    this.mealType = mealType;
+    this.dose = dose;
+    this.insulinType = insulinType;
   }
 
-  public MealLogRequest userId(Long userId) {
+  public InsulinLogRequest userId(Long userId) {
     this.userId = userId;
     return this;
   }
@@ -67,7 +65,7 @@ public class MealLogRequest {
     this.userId = userId;
   }
 
-  public MealLogRequest timestamp(OffsetDateTime timestamp) {
+  public InsulinLogRequest timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -87,64 +85,44 @@ public class MealLogRequest {
     this.timestamp = timestamp;
   }
 
-  public MealLogRequest carbohydrateG(Integer carbohydrateG) {
-    this.carbohydrateG = carbohydrateG;
+  public InsulinLogRequest dose(Float dose) {
+    this.dose = dose;
     return this;
   }
 
   /**
-   * carb (g)
-   * @return carbohydrateG
+   * insulin (Unit)
+   * @return dose
   */
   @NotNull 
-  @Schema(name = "carbohydrateG", description = "carb (g)", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("carbohydrateG")
-  public Integer getCarbohydrateG() {
-    return carbohydrateG;
+  @Schema(name = "dose", description = "insulin (Unit)", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("dose")
+  public Float getDose() {
+    return dose;
   }
 
-  public void setCarbohydrateG(Integer carbohydrateG) {
-    this.carbohydrateG = carbohydrateG;
+  public void setDose(Float dose) {
+    this.dose = dose;
   }
 
-  public MealLogRequest mealType(String mealType) {
-    this.mealType = mealType;
+  public InsulinLogRequest insulinType(String insulinType) {
+    this.insulinType = insulinType;
     return this;
   }
 
   /**
-   * Get mealType
-   * @return mealType
+   * Get insulinType
+   * @return insulinType
   */
   @NotNull 
-  @Schema(name = "mealType", example = "BREAKFAST", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("mealType")
-  public String getMealType() {
-    return mealType;
+  @Schema(name = "insulinType", example = "RAPID_ACTING", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("insulinType")
+  public String getInsulinType() {
+    return insulinType;
   }
 
-  public void setMealType(String mealType) {
-    this.mealType = mealType;
-  }
-
-  public MealLogRequest foodDesc(String foodDesc) {
-    this.foodDesc = foodDesc;
-    return this;
-  }
-
-  /**
-   * Get foodDesc
-   * @return foodDesc
-  */
-  
-  @Schema(name = "foodDesc", example = "사과 1개", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("foodDesc")
-  public String getFoodDesc() {
-    return foodDesc;
-  }
-
-  public void setFoodDesc(String foodDesc) {
-    this.foodDesc = foodDesc;
+  public void setInsulinType(String insulinType) {
+    this.insulinType = insulinType;
   }
 
   @Override
@@ -155,28 +133,26 @@ public class MealLogRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MealLogRequest mealLogRequest = (MealLogRequest) o;
-    return Objects.equals(this.userId, mealLogRequest.userId) &&
-        Objects.equals(this.timestamp, mealLogRequest.timestamp) &&
-        Objects.equals(this.carbohydrateG, mealLogRequest.carbohydrateG) &&
-        Objects.equals(this.mealType, mealLogRequest.mealType) &&
-        Objects.equals(this.foodDesc, mealLogRequest.foodDesc);
+    InsulinLogRequest insulinLogRequest = (InsulinLogRequest) o;
+    return Objects.equals(this.userId, insulinLogRequest.userId) &&
+        Objects.equals(this.timestamp, insulinLogRequest.timestamp) &&
+        Objects.equals(this.dose, insulinLogRequest.dose) &&
+        Objects.equals(this.insulinType, insulinLogRequest.insulinType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, timestamp, carbohydrateG, mealType, foodDesc);
+    return Objects.hash(userId, timestamp, dose, insulinType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MealLogRequest {\n");
+    sb.append("class InsulinLogRequest {\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
-    sb.append("    carbohydrateG: ").append(toIndentedString(carbohydrateG)).append("\n");
-    sb.append("    mealType: ").append(toIndentedString(mealType)).append("\n");
-    sb.append("    foodDesc: ").append(toIndentedString(foodDesc)).append("\n");
+    sb.append("    dose: ").append(toIndentedString(dose)).append("\n");
+    sb.append("    insulinType: ").append(toIndentedString(insulinType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

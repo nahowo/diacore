@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/api/api-read" />
             <option value="$PROJECT_DIR$/api/api-write" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/common" />
             <option value="$PROJECT_DIR$/domain/log" />
             <option value="$PROJECT_DIR$/domain/profile" />
             <option value="$PROJECT_DIR$/domain/simulation" />

@@ -1,5 +1,7 @@
+plugins {
+    id("java-library")
+}
+
 dependencies {
-    "implementation"("org.springframework.boot:spring-boot-starter-data-jpa")
-    "implementation"("org.springframework.boot:spring-boot-starter-data-redis")
-    "runtimeOnly"("com.mysql:mysql-connector-j")
+    implementation(project(":domain:common"))
 }

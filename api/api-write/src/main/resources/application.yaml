@@ -13,6 +13,9 @@ spring:
     url: ${MYSQL_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 3000
 
   flyway:
     enabled: true

@@ -4,6 +4,9 @@ server:
 spring:
   application:
     name: diacore-backend
+  threads:
+    virtual:
+      enabled: true
 
   config:
     import: optional:file:.env[.properties]
@@ -13,6 +16,9 @@ spring:
     url: ${MYSQL_URL}
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 3000
 
   flyway:
     enabled: true

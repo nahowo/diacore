@@ -22,7 +22,11 @@ openApiGenerate {
         "useJakartaEe" to "true",
         "openApiNullable" to "false",
         "useTags" to "true",
-        "useRecords" to "true"
+        "useRecords" to "true",
+        "enumPropertyNaming" to "MACRO_CASE",
+        "useBeanValidation" to "false",
+        "annotationLibrary" to "none",
+        "documentationProvider" to "none",
     ))
 }
 

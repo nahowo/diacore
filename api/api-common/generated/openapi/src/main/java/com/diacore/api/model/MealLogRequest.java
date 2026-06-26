@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -19,7 +17,7 @@ import jakarta.annotation.Generated;
  * MealLogRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class MealLogRequest {
 
   private Long userId;
@@ -56,8 +54,7 @@ public class MealLogRequest {
    * Get userId
    * @return userId
   */
-  @NotNull 
-  @Schema(name = "userId", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("userId")
   public Long getUserId() {
     return userId;
@@ -76,8 +73,7 @@ public class MealLogRequest {
    * Get timestamp
    * @return timestamp
   */
-  @NotNull @Valid 
-  @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("timestamp")
   public OffsetDateTime getTimestamp() {
     return timestamp;
@@ -96,8 +92,7 @@ public class MealLogRequest {
    * carb (g)
    * @return carbohydrateG
   */
-  @NotNull 
-  @Schema(name = "carbohydrateG", description = "carb (g)", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("carbohydrateG")
   public Integer getCarbohydrateG() {
     return carbohydrateG;
@@ -116,8 +111,7 @@ public class MealLogRequest {
    * Get mealType
    * @return mealType
   */
-  @NotNull 
-  @Schema(name = "mealType", example = "BREAKFAST", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("mealType")
   public String getMealType() {
     return mealType;
@@ -137,7 +131,6 @@ public class MealLogRequest {
    * @return foodDesc
   */
   
-  @Schema(name = "foodDesc", example = "사과 1개", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("foodDesc")
   public String getFoodDesc() {
     return foodDesc;

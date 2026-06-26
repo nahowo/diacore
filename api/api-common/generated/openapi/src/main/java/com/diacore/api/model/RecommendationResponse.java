@@ -5,9 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -17,7 +15,7 @@ import jakarta.annotation.Generated;
  * RecommendationResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class RecommendationResponse {
 
   private Long id;
@@ -40,7 +38,6 @@ public class RecommendationResponse {
    * @return id
   */
   
-  @Schema(name = "id", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
   public Long getId() {
     return id;
@@ -60,7 +57,6 @@ public class RecommendationResponse {
    * @return parameterType
   */
   
-  @Schema(name = "parameterType", example = "CARB_RATIO", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("parameterType")
   public String getParameterType() {
     return parameterType;
@@ -80,7 +76,6 @@ public class RecommendationResponse {
    * @return originalValue
   */
   
-  @Schema(name = "originalValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("originalValue")
   public Float getOriginalValue() {
     return originalValue;
@@ -100,7 +95,6 @@ public class RecommendationResponse {
    * @return recommendedValue
   */
   
-  @Schema(name = "recommendedValue", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("recommendedValue")
   public Float getRecommendedValue() {
     return recommendedValue;
@@ -120,7 +114,6 @@ public class RecommendationResponse {
    * @return reasonText
   */
   
-  @Schema(name = "reasonText", example = "최근 7일간 아침 식후 고혈당 지속", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("reasonText")
   public String getReasonText() {
     return reasonText;

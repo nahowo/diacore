@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -19,7 +17,7 @@ import jakarta.annotation.Generated;
  * GlucoseLogRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class GlucoseLogRequest {
 
   private Long userId;
@@ -53,8 +51,7 @@ public class GlucoseLogRequest {
    * Get userId
    * @return userId
   */
-  @NotNull 
-  @Schema(name = "userId", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("userId")
   public Long getUserId() {
     return userId;
@@ -73,8 +70,7 @@ public class GlucoseLogRequest {
    * Get timestamp
    * @return timestamp
   */
-  @NotNull @Valid 
-  @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("timestamp")
   public OffsetDateTime getTimestamp() {
     return timestamp;
@@ -93,8 +89,7 @@ public class GlucoseLogRequest {
    * glucose (mg/dL)
    * @return value
   */
-  @NotNull 
-  @Schema(name = "value", description = "glucose (mg/dL)", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("value")
   public Integer getValue() {
     return value;
@@ -114,7 +109,6 @@ public class GlucoseLogRequest {
    * @return trendArrow
   */
   
-  @Schema(name = "trendArrow", example = "FLAT", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("trendArrow")
   public String getTrendArrow() {
     return trendArrow;

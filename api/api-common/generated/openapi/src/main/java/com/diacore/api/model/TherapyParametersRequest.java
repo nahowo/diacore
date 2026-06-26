@@ -5,9 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -17,7 +15,7 @@ import jakarta.annotation.Generated;
  * TherapyParametersRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class TherapyParametersRequest {
 
   private Long userId;
@@ -48,8 +46,7 @@ public class TherapyParametersRequest {
    * Get userId
    * @return userId
   */
-  @NotNull 
-  @Schema(name = "userId", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("userId")
   public Long getUserId() {
     return userId;
@@ -68,8 +65,7 @@ public class TherapyParametersRequest {
    * Get carbRatio
    * @return carbRatio
   */
-  @NotNull 
-  @Schema(name = "carbRatio", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("carbRatio")
   public Float getCarbRatio() {
     return carbRatio;
@@ -88,8 +84,7 @@ public class TherapyParametersRequest {
    * Get insulinSensitivity
    * @return insulinSensitivity
   */
-  @NotNull 
-  @Schema(name = "insulinSensitivity", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("insulinSensitivity")
   public Float getInsulinSensitivity() {
     return insulinSensitivity;

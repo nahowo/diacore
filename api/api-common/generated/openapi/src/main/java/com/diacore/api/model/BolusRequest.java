@@ -5,9 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -17,7 +15,7 @@ import jakarta.annotation.Generated;
  * BolusRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class BolusRequest {
 
   private Long userId;
@@ -51,8 +49,7 @@ public class BolusRequest {
    * Get userId
    * @return userId
   */
-  @NotNull 
-  @Schema(name = "userId", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("userId")
   public Long getUserId() {
     return userId;
@@ -71,8 +68,7 @@ public class BolusRequest {
    * Get currentBg
    * @return currentBg
   */
-  @NotNull 
-  @Schema(name = "currentBg", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("currentBg")
   public Integer getCurrentBg() {
     return currentBg;
@@ -91,8 +87,7 @@ public class BolusRequest {
    * Get targetBg
    * @return targetBg
   */
-  @NotNull 
-  @Schema(name = "targetBg", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("targetBg")
   public Integer getTargetBg() {
     return targetBg;
@@ -111,8 +106,7 @@ public class BolusRequest {
    * Get mealCarbsG
    * @return mealCarbsG
   */
-  @NotNull 
-  @Schema(name = "mealCarbsG", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("mealCarbsG")
   public Integer getMealCarbsG() {
     return mealCarbsG;

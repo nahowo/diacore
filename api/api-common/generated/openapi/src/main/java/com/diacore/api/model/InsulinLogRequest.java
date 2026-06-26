@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -19,7 +17,7 @@ import jakarta.annotation.Generated;
  * InsulinLogRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class InsulinLogRequest {
 
   private Long userId;
@@ -54,8 +52,7 @@ public class InsulinLogRequest {
    * Get userId
    * @return userId
   */
-  @NotNull 
-  @Schema(name = "userId", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("userId")
   public Long getUserId() {
     return userId;
@@ -74,8 +71,7 @@ public class InsulinLogRequest {
    * Get timestamp
    * @return timestamp
   */
-  @NotNull @Valid 
-  @Schema(name = "timestamp", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("timestamp")
   public OffsetDateTime getTimestamp() {
     return timestamp;
@@ -94,8 +90,7 @@ public class InsulinLogRequest {
    * insulin (Unit)
    * @return dose
   */
-  @NotNull 
-  @Schema(name = "dose", description = "insulin (Unit)", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("dose")
   public Float getDose() {
     return dose;
@@ -114,8 +109,7 @@ public class InsulinLogRequest {
    * Get insulinType
    * @return insulinType
   */
-  @NotNull 
-  @Schema(name = "insulinType", example = "RAPID_ACTING", requiredMode = Schema.RequiredMode.REQUIRED)
+  @NotNull
   @JsonProperty("insulinType")
   public String getInsulinType() {
     return insulinType;

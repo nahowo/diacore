@@ -5,9 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.time.OffsetDateTime;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.util.*;
@@ -17,7 +15,7 @@ import jakarta.annotation.Generated;
  * SimulationResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class SimulationResponse {
 
   private Integer predictedBg;
@@ -36,7 +34,6 @@ public class SimulationResponse {
    * @return predictedBg
   */
   
-  @Schema(name = "predictedBg", description = "result glucose", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("predictedBg")
   public Integer getPredictedBg() {
     return predictedBg;
@@ -56,7 +53,6 @@ public class SimulationResponse {
    * @return recommendedCarbsG
   */
   
-  @Schema(name = "recommendedCarbsG", description = "recommended carb (g)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("recommendedCarbsG")
   public Integer getRecommendedCarbsG() {
     return recommendedCarbsG;
@@ -76,7 +72,6 @@ public class SimulationResponse {
    * @return recommendedBolus
   */
   
-  @Schema(name = "recommendedBolus", description = "recommended insulin (Unit)", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("recommendedBolus")
   public Float getRecommendedBolus() {
     return recommendedBolus;

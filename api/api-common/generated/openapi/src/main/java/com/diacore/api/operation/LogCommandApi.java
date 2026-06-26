@@ -35,10 +35,10 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
 @Validated
-@Tag(name = "Log", description = "the Log API")
-public interface LogApi {
+@Tag(name = "LogCommand", description = "the LogCommand API")
+public interface LogCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -53,7 +53,7 @@ public interface LogApi {
     @Operation(
         operationId = "createGlucoseLog",
         summary = "add glucose log",
-        tags = { "Log" },
+        tags = { "LogCommand" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CommonResponse.class))
@@ -93,7 +93,7 @@ public interface LogApi {
     @Operation(
         operationId = "createInsulinLog",
         summary = "add insulin log",
-        tags = { "Log" },
+        tags = { "LogCommand" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CommonResponse.class))
@@ -133,7 +133,7 @@ public interface LogApi {
     @Operation(
         operationId = "createMealLog",
         summary = "add meal log",
-        tags = { "Log" },
+        tags = { "LogCommand" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = CommonResponse.class))

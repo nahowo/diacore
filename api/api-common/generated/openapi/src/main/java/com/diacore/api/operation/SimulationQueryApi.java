@@ -34,10 +34,10 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
 @Validated
-@Tag(name = "Simulation", description = "the Simulation API")
-public interface SimulationApi {
+@Tag(name = "SimulationQuery", description = "the SimulationQuery API")
+public interface SimulationQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -52,7 +52,7 @@ public interface SimulationApi {
     @Operation(
         operationId = "calculateBolus",
         summary = "calculate bolus",
-        tags = { "Simulation" },
+        tags = { "SimulationQuery" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = SimulationResponse.class))
@@ -92,7 +92,7 @@ public interface SimulationApi {
     @Operation(
         operationId = "predictExerciseImpact",
         summary = "predict exercise impact",
-        tags = { "Simulation" },
+        tags = { "SimulationQuery" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = SimulationResponse.class))

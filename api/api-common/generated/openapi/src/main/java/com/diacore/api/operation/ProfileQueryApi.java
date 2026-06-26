@@ -5,9 +5,7 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.CommonResponse;
 import com.diacore.api.model.RecommendationResponse;
-import com.diacore.api.model.TherapyParametersRequest;
 import com.diacore.api.model.TherapyParametersResponse;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,10 +33,10 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-23T11:47:03.300067+09:00[Asia/Seoul]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T17:35:52.036281+09:00[Asia/Seoul]")
 @Validated
-@Tag(name = "Profile", description = "the Profile API")
-public interface ProfileApi {
+@Tag(name = "ProfileQuery", description = "the ProfileQuery API")
+public interface ProfileQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -53,7 +51,7 @@ public interface ProfileApi {
     @Operation(
         operationId = "getRecommendationHistory",
         summary = "get therapy parameters recommendation history",
-        tags = { "Profile" },
+        tags = { "ProfileQuery" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = RecommendationResponse.class)))
@@ -92,7 +90,7 @@ public interface ProfileApi {
     @Operation(
         operationId = "getTherapyParameters",
         summary = "get therapy parameters",
-        tags = { "Profile" },
+        tags = { "ProfileQuery" },
         responses = {
             @ApiResponse(responseCode = "200", description = "success", content = {
                 @Content(mediaType = "application/json", schema = @Schema(implementation = TherapyParametersResponse.class))
@@ -112,46 +110,6 @@ public interface ProfileApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"carbRatio\" : 0.8008282, \"insulinSensitivity\" : 6.0274563 }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * PUT /api/v1/profiles/parameters : update therapy parameters
-     *
-     * @param therapyParametersRequest  (required)
-     * @return success (status code 200)
-     */
-    @Operation(
-        operationId = "updateTherapyParameters",
-        summary = "update therapy parameters",
-        tags = { "Profile" },
-        responses = {
-            @ApiResponse(responseCode = "200", description = "success", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = CommonResponse.class))
-            })
-        }
-    )
-    @RequestMapping(
-        method = RequestMethod.PUT,
-        value = "/api/v1/profiles/parameters",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-    
-    default ResponseEntity<CommonResponse> updateTherapyParameters(
-        @Parameter(name = "TherapyParametersRequest", description = "", required = true) @Valid @RequestBody TherapyParametersRequest therapyParametersRequest
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

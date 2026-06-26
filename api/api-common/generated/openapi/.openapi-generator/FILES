@@ -12,6 +12,7 @@ src/main/java/com/diacore/api/model/SimulationResponse.java
 src/main/java/com/diacore/api/model/TherapyParametersRequest.java
 src/main/java/com/diacore/api/model/TherapyParametersResponse.java
 src/main/java/com/diacore/api/operation/ApiUtil.java
-src/main/java/com/diacore/api/operation/LogApi.java
-src/main/java/com/diacore/api/operation/ProfileApi.java
-src/main/java/com/diacore/api/operation/SimulationApi.java
+src/main/java/com/diacore/api/operation/LogCommandApi.java
+src/main/java/com/diacore/api/operation/ProfileCommandApi.java
+src/main/java/com/diacore/api/operation/ProfileQueryApi.java
+src/main/java/com/diacore/api/operation/SimulationQueryApi.java

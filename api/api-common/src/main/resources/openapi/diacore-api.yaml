@@ -11,7 +11,7 @@ paths:
   /api/v1/logs/glucose:
     post:
       tags:
-        - Log
+        - LogCommand
       summary: add glucose log
       operationId: createGlucoseLog
       requestBody:
@@ -31,7 +31,7 @@ paths:
   /api/v1/logs/meals:
     post:
       tags:
-        - Log
+        - LogCommand
       summary: add meal log
       operationId: createMealLog
       requestBody:
@@ -51,7 +51,7 @@ paths:
   /api/v1/logs/insulins:
     post:
       tags:
-        - Log
+        - LogCommand
       summary: add insulin log
       operationId: createInsulinLog
       requestBody:
@@ -74,7 +74,7 @@ paths:
   /api/v1/profiles/parameters:
     get:
       tags:
-        - Profile
+        - ProfileQuery
       summary: get therapy parameters
       operationId: getTherapyParameters
       parameters:
@@ -93,7 +93,7 @@ paths:
                 $ref: '#/components/schemas/TherapyParametersResponse'
     put:
       tags:
-        - Profile
+        - ProfileCommand
       summary: update therapy parameters
       operationId: updateTherapyParameters
       requestBody:
@@ -113,7 +113,7 @@ paths:
   /api/v1/profiles/recommendations:
     get:
       tags:
-        - Profile
+        - ProfileQuery
       summary: get therapy parameters recommendation history
       operationId: getRecommendationHistory
       parameters:
@@ -139,7 +139,7 @@ paths:
   /api/v1/simulations/exercise:
     post:
       tags:
-        - Simulation
+        - SimulationQuery
       summary: predict exercise impact
       operationId: predictExerciseImpact
       requestBody:
@@ -159,7 +159,7 @@ paths:
   /api/v1/simulations/bolus:
     post:
       tags:
-        - Simulation
+        - SimulationQuery
       summary: calculate bolus
       operationId: calculateBolus
       requestBody:

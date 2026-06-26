@@ -21,7 +21,8 @@ openApiGenerate {
         "useSpringBoot3" to "true",
         "useJakartaEe" to "true",
         "openApiNullable" to "false",
-        "useTags" to "true"
+        "useTags" to "true",
+        "useRecords" to "true"
     ))
 }
 

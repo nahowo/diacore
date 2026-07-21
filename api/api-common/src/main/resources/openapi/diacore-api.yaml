@@ -48,7 +48,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommonResponse'
 
-  /api/v1/logs/insulins:
+  /api/v1/logs/insulin:
     post:
       tags:
         - LogCommand
@@ -204,6 +204,9 @@ components:
         trendArrow:
           type: string
           example: "FLAT"
+        source:
+          type: string
+          example: "dexcom G7"
 
     MealLogRequest:
       type: object

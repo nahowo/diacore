@@ -1,6 +1,6 @@
-package com.diacore.common.model;
+package com.diacore.domain.common.model;
 
-import com.diacore.common.usecase.Actor;
+import com.diacore.domain.common.usecase.Actor;
 
 public record Event<T, S>(
         String resourceName,

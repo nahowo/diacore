@@ -14,7 +14,7 @@ CREATE TABLE insulin_logs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     timestamp DATETIME NOT NULL,
-    dose DECIMAL(5,2) NOT NULL,
+    dose FLOAT NOT NULL,
     insulin_type VARCHAR(20) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

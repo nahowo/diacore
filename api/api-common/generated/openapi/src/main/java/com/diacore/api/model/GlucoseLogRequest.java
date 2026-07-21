@@ -17,7 +17,7 @@ import jakarta.annotation.Generated;
  * GlucoseLogRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T20:57:04.206910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class GlucoseLogRequest {
 
   private Long userId;
@@ -28,6 +28,8 @@ public class GlucoseLogRequest {
   private Integer value;
 
   private String trendArrow;
+
+  private String source;
 
   public GlucoseLogRequest() {
     super();
@@ -118,6 +120,25 @@ public class GlucoseLogRequest {
     this.trendArrow = trendArrow;
   }
 
+  public GlucoseLogRequest source(String source) {
+    this.source = source;
+    return this;
+  }
+
+  /**
+   * Get source
+   * @return source
+  */
+  
+  @JsonProperty("source")
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -130,12 +151,13 @@ public class GlucoseLogRequest {
     return Objects.equals(this.userId, glucoseLogRequest.userId) &&
         Objects.equals(this.timestamp, glucoseLogRequest.timestamp) &&
         Objects.equals(this.value, glucoseLogRequest.value) &&
-        Objects.equals(this.trendArrow, glucoseLogRequest.trendArrow);
+        Objects.equals(this.trendArrow, glucoseLogRequest.trendArrow) &&
+        Objects.equals(this.source, glucoseLogRequest.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, timestamp, value, trendArrow);
+    return Objects.hash(userId, timestamp, value, trendArrow, source);
   }
 
   @Override
@@ -146,6 +168,7 @@ public class GlucoseLogRequest {
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    trendArrow: ").append(toIndentedString(trendArrow)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("}");
     return sb.toString();
   }

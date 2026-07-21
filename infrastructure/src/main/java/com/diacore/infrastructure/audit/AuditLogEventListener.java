@@ -1,6 +1,6 @@
 package com.diacore.infrastructure.audit;
 
-import com.diacore.common.model.Event;
+import com.diacore.domain.common.model.Event;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;

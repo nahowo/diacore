@@ -1,11 +1,11 @@
-package com.diacore.common.usecase;
+package com.diacore.domain.common.usecase;
 
 public record Actor(
         Long userId,
         String role
 ) {
-    public static Actor of(Long userId, String role) {
-        return new Actor(userId, role);
+    public static Actor of(String role) {
+        return new Actor(1L, role);
     }
 
     public static Actor system() {

@@ -7,6 +7,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("io.swagger.core.v3:swagger-annotations:2.2.20")
     compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
+    implementation(project(":domain:common"))
 }
 
 openApiGenerate {

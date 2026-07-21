@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-06-26T20:02:31.020700+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T20:57:04.206910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface LogCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -59,14 +59,14 @@ public interface LogCommandApi {
 
 
     /**
-     * POST /api/v1/logs/insulins : add insulin log
+     * POST /api/v1/logs/insulin : add insulin log
      *
      * @param insulinLogRequest  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/api/v1/logs/insulins",
+        value = "/api/v1/logs/insulin",
         produces = { "application/json" },
         consumes = { "application/json" }
     )

@@ -12,52 +12,31 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * CommonResponse
+ * TokenResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class CommonResponse {
+public class TokenResponse {
 
-  private Long id;
+  private String token;
 
-  private String status;
-
-  public CommonResponse id(Long id) {
-    this.id = id;
+  public TokenResponse token(String token) {
+    this.token = token;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * JWT Access Token
+   * @return token
   */
   
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
+  @JsonProperty("token")
+  public String getToken() {
+    return token;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public CommonResponse status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-  */
-  
-  @JsonProperty("status")
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
+  public void setToken(String token) {
+    this.token = token;
   }
 
   @Override
@@ -68,22 +47,20 @@ public class CommonResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CommonResponse commonResponse = (CommonResponse) o;
-    return Objects.equals(this.id, commonResponse.id) &&
-        Objects.equals(this.status, commonResponse.status);
+    TokenResponse tokenResponse = (TokenResponse) o;
+    return Objects.equals(this.token, tokenResponse.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status);
+    return Objects.hash(token);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CommonResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("class TokenResponse {\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }

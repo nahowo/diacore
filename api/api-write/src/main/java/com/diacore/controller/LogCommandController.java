@@ -25,7 +25,7 @@ public class LogCommandController implements LogCommandApi {
 
     @Override
     public ResponseEntity<CommonResponse> createGlucoseLog(GlucoseLogRequest request) {
-        Actor actor = new Actor(1L, "");
+        Actor actor = new Actor(1L, ""); // TODO
 
         RegisterGlucoseLog.Request command = new RegisterGlucoseLog.Request(
                 request.getTimestamp(),

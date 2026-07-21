@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/domain/log" />
             <option value="$PROJECT_DIR$/domain/profile" />
             <option value="$PROJECT_DIR$/domain/simulation" />
+            <option value="$PROJECT_DIR$/domain/user" />
             <option value="$PROJECT_DIR$/infrastructure" />
           </set>
         </option>

@@ -5,8 +5,8 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.RecommendationResponse;
-import com.diacore.api.model.TherapyParametersResponse;
+import com.diacore.api.model.CommonResponse;
+import com.diacore.api.model.RegisterUserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,31 +20,32 @@ import java.util.Optional;
 import jakarta.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public interface ProfileQueryApi {
+public interface UserCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * GET /api/v1/profiles/recommendations : get therapy parameters recommendation history
+     * POST /api/v1/users/register : Register User
      *
-     * @param userId  (required)
+     * @param registerUserRequest  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/api/v1/profiles/recommendations",
-        produces = { "application/json" }
+        method = RequestMethod.POST,
+        value = "/api/v1/users/register",
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
     
-    default ResponseEntity<List<RecommendationResponse>> getRecommendationHistory(
-         @RequestParam(value = "userId", required = true) Long userId
+    default ResponseEntity<CommonResponse> registerUser(
+         @RequestBody RegisterUserRequest registerUserRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "[ { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 }, { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 } ]";
+                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -56,24 +57,23 @@ public interface ProfileQueryApi {
 
 
     /**
-     * GET /api/v1/profiles/parameters : get therapy parameters
+     * DELETE /api/v1/users/withdraw : Withdraw User
      *
-     * @param userId  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/api/v1/profiles/parameters",
+        method = RequestMethod.DELETE,
+        value = "/api/v1/users/withdraw",
         produces = { "application/json" }
     )
     
-    default ResponseEntity<TherapyParametersResponse> getTherapyParameters(
-         @RequestParam(value = "userId", required = true) Long userId
+    default ResponseEntity<CommonResponse> withdrawUser(
+        
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"carbRatio\" : 0.8008282, \"insulinSensitivity\" : 6.0274563 }";
+                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

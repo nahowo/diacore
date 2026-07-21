@@ -15,7 +15,7 @@ import jakarta.annotation.Generated;
  * BolusRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T20:57:04.206910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class BolusRequest {
 
   private Long userId;

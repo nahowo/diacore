@@ -5,8 +5,8 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.CommonResponse;
-import com.diacore.api.model.TherapyParametersRequest;
+import com.diacore.api.model.LoginUserRequest;
+import com.diacore.api.model.TokenResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,32 +20,32 @@ import java.util.Optional;
 import jakarta.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public interface ProfileCommandApi {
+public interface UserQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * PUT /api/v1/profiles/parameters : update therapy parameters
+     * POST /api/v1/users/login : Login
      *
-     * @param therapyParametersRequest  (required)
+     * @param loginUserRequest  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
-        method = RequestMethod.PUT,
-        value = "/api/v1/profiles/parameters",
+        method = RequestMethod.POST,
+        value = "/api/v1/users/login",
         produces = { "application/json" },
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<CommonResponse> updateTherapyParameters(
-         @RequestBody TherapyParametersRequest therapyParametersRequest
+    default ResponseEntity<TokenResponse> loginUser(
+         @RequestBody LoginUserRequest loginUserRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
+                    String exampleString = "{ \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

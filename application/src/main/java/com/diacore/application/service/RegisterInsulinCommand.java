@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class RegisterInsulinCommand implements RegisterInsulinLog {
     private final SaveInsulinLogPort saveInsulinLogPort;
 
@@ -16,7 +17,6 @@ public class RegisterInsulinCommand implements RegisterInsulinLog {
     }
 
     @Override
-    @Transactional
     public Long execute(Actor actor, Request request) {
         InsulinLog insulinLog = InsulinLog.create(
                 actor.userId(),

@@ -17,7 +17,7 @@ import jakarta.annotation.Generated;
  * MealLogResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T16:00:42.322358+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class MealLogResponse {
 
   private Long id;
@@ -25,7 +25,7 @@ public class MealLogResponse {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
 
-  private Integer carbohydrateG;
+  private Float carbohydrateG = null;
 
   private String mealType;
 
@@ -38,7 +38,7 @@ public class MealLogResponse {
   /**
    * Constructor with only required parameters
    */
-  public MealLogResponse(Long id, OffsetDateTime timestamp, Integer carbohydrateG, String mealType) {
+  public MealLogResponse(Long id, OffsetDateTime timestamp, Float carbohydrateG, String mealType) {
     this.id = id;
     this.timestamp = timestamp;
     this.carbohydrateG = carbohydrateG;
@@ -83,7 +83,7 @@ public class MealLogResponse {
     this.timestamp = timestamp;
   }
 
-  public MealLogResponse carbohydrateG(Integer carbohydrateG) {
+  public MealLogResponse carbohydrateG(Float carbohydrateG) {
     this.carbohydrateG = carbohydrateG;
     return this;
   }
@@ -94,11 +94,11 @@ public class MealLogResponse {
   */
   @NotNull
   @JsonProperty("carbohydrateG")
-  public Integer getCarbohydrateG() {
+  public Float getCarbohydrateG() {
     return carbohydrateG;
   }
 
-  public void setCarbohydrateG(Integer carbohydrateG) {
+  public void setCarbohydrateG(Float carbohydrateG) {
     this.carbohydrateG = carbohydrateG;
   }
 

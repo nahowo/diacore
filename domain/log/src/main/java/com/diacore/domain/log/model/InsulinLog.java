@@ -19,7 +19,7 @@ public class InsulinLog {
 
     public static InsulinLog create(Long userId, OffsetDateTime timestamp, Float dose, String type) {
         if (dose == null || dose <= 0) {
-            throw new IllegalArgumentException("Insulin dose must be over 0. ");
+            throw new IllegalArgumentException("Insulin dose must be over 0.");
         }
         return new InsulinLog(null, userId, timestamp, dose, type);
     }

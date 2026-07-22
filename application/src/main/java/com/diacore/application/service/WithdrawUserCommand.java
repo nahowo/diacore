@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class WithdrawUserCommand implements WithdrawUser {
     private final DeleteUserPort deleteUserPort;
 
@@ -17,7 +18,6 @@ public class WithdrawUserCommand implements WithdrawUser {
     }
 
     @Override
-    @Transactional
     public Long execute(Actor actor, Request request) {
         if (actor.userId() == null) {
             throw new BusinessException(ErrorCode.UNAUTHORIZED_USER);

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T16:00:42.322358+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface LogQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -109,7 +109,7 @@ public interface LogQueryApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"pageNumber\" : 5, \"content\" : [ { \"carbohydrateG\" : 6, \"mealType\" : \"mealType\", \"foodDesc\" : \"foodDesc\", \"id\" : 0, \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\" }, { \"carbohydrateG\" : 6, \"mealType\" : \"mealType\", \"foodDesc\" : \"foodDesc\", \"id\" : 0, \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\" } ], \"totalElements\" : 1 }";
+                    String exampleString = "{ \"pageNumber\" : 1, \"content\" : [ { \"carbohydrateG\" : \"\", \"mealType\" : \"mealType\", \"foodDesc\" : \"foodDesc\", \"id\" : 0, \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\" }, { \"carbohydrateG\" : \"\", \"mealType\" : \"mealType\", \"foodDesc\" : \"foodDesc\", \"id\" : 0, \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\" } ], \"totalElements\" : 6 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

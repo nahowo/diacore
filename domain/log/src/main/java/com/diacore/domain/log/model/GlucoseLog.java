@@ -22,7 +22,7 @@ public class GlucoseLog {
     public static GlucoseLog create(Long userId, OffsetDateTime timestamp, int value, String trendArrow,
                                     String source) {
         if (value <= 0) {
-            throw new IllegalArgumentException("Glucose must be over 0. ");
+            throw new IllegalArgumentException("Glucose must be over 0.");
         }
         return new GlucoseLog(null, userId, timestamp, value, trendArrow, source);
     }

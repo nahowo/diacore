@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class RegisterUserCommand implements RegisterUser {
     private final SaveUserPort saveUserPort;
     private final LoadUserPort loadUserPort;
@@ -24,7 +25,6 @@ public class RegisterUserCommand implements RegisterUser {
     }
 
     @Override
-    @Transactional
     public Long execute(Actor actor, Request request) {
         if (loadUserPort.findByEmail(request.email()).isPresent()) {
             throw new BusinessException(ErrorCode.DUPLICATE_EMAIL);

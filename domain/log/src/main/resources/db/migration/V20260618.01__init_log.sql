@@ -25,7 +25,7 @@ CREATE TABLE meal_logs (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     timestamp DATETIME NOT NULL,
-    carbohydrate_g INT NOT NULL,
+    carbohydrate_g FLOAT NOT NULL,
     meal_type VARCHAR(20) NOT NULL,
     food_desc VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP

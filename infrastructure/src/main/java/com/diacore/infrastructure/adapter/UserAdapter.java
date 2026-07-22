@@ -38,8 +38,9 @@ public class UserAdapter implements SaveUserPort, LoadUserPort, DeleteUserPort {
     }
 
     @Override
-    public void deleteById(Long userId) {
+    public Long deleteById(Long userId) {
         repository.deleteById(userId);
+        return userId;
     }
 
     private User toDomain(UserJpaEntity entity) {

@@ -1,10 +1,9 @@
-package com.diacore.controller;
+package com.diacore.api.write.controller;
 
 import com.diacore.api.model.CommonResponse;
 import com.diacore.api.model.RegisterUserRequest;
 import com.diacore.api.operation.UserCommandApi;
 import com.diacore.application.usecase.RegisterUser;
-import com.diacore.application.usecase.RegisterUser.Request;
 import com.diacore.application.usecase.WithdrawUser;
 import com.diacore.domain.common.usecase.Actor;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class UserCommandController implements UserCommandApi {
     public ResponseEntity<CommonResponse> registerUser(RegisterUserRequest request) {
         Actor actor = new Actor(1L, ""); // TODO
 
-        RegisterUser.Request command = new Request(
+        RegisterUser.Request command = new RegisterUser.Request(
                 request.getEmail(),
                 request.getPassword(),
                 request.getName()
@@ -45,14 +44,12 @@ public class UserCommandController implements UserCommandApi {
     public ResponseEntity<CommonResponse> withdrawUser() {
         Actor actor = new Actor(1L, ""); // TODO
 
-        WithdrawUser.Request command = new WithdrawUser.Request(
-                actor
-        );
+        WithdrawUser.Request command = new WithdrawUser.Request();
 
-        registerUser.execute(actor);
+        Long deletedId = withdrawUser.execute(actor, command);
 
         CommonResponse response = new CommonResponse()
-                .id(actor.userId())
+                .id(deletedId)
                 .status("SUCCESS");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -7,6 +7,7 @@ import com.diacore.domain.user.port.out.LoadUserPort;
 import com.diacore.domain.user.port.out.SaveUserPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RegisterUserCommand implements RegisterUser {
@@ -21,6 +22,7 @@ public class RegisterUserCommand implements RegisterUser {
     }
 
     @Override
+    @Transactional
     public Long execute(Actor actor, Request request) {
         if (loadUserPort.findByEmail(request.email()).isPresent()) {
             throw new IllegalArgumentException("email is already being used. ");
@@ -29,7 +31,7 @@ public class RegisterUserCommand implements RegisterUser {
 
         User user = User.create(
                 request.email(),
-                request.password(),
+                encodedPassword,
                 request.name()
         );
 

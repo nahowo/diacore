@@ -7,6 +7,7 @@ import com.diacore.domain.user.port.out.LoadUserPort;
 import com.diacore.domain.user.port.out.TokenGeneratorPort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthenticateUserService implements AuthenticateUser {
@@ -22,7 +23,8 @@ public class AuthenticateUserService implements AuthenticateUser {
     }
 
     @Override
-    public Long execute(Actor actor, Request request) {
+    @Transactional(readOnly = true)
+    public String execute(Actor actor, Request request) {
         User user = loadUserPort.findByEmail(request.email())
                 .orElseThrow(() -> new IllegalArgumentException("Unknown email. "));
 
@@ -30,6 +32,6 @@ public class AuthenticateUserService implements AuthenticateUser {
             throw new IllegalArgumentException("Password is not matching. ");
         }
 
-        return Long.valueOf(tokenGeneratorPort.generateToken(user.getId()).toString()); // TODO
+        return tokenGeneratorPort.generateToken(user.getId());
     }
 }

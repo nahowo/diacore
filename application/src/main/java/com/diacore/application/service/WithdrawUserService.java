@@ -4,6 +4,7 @@ import com.diacore.application.usecase.WithdrawUser;
 import com.diacore.domain.common.usecase.Actor;
 import com.diacore.domain.user.port.out.DeleteUserPort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class WithdrawUserService implements WithdrawUser {
@@ -14,6 +15,7 @@ public class WithdrawUserService implements WithdrawUser {
     }
 
     @Override
+    @Transactional
     public Long execute(Actor actor, Request request) {
         if (actor.userId() == null) {
             throw new IllegalArgumentException("User is not Authenticated. ");

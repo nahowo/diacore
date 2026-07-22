@@ -1,4 +1,4 @@
-package com.diacore.controller;
+package com.diacore.api.write.controller;
 
 import com.diacore.api.model.CommonResponse;
 import com.diacore.api.model.GlucoseLogRequest;

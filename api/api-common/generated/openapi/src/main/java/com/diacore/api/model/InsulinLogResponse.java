@@ -14,11 +14,13 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * InsulinLogRequest
+ * InsulinLogResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class InsulinLogRequest {
+public class InsulinLogResponse {
+
+  private Long id;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
@@ -27,20 +29,40 @@ public class InsulinLogRequest {
 
   private String insulinType;
 
-  public InsulinLogRequest() {
+  public InsulinLogResponse() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public InsulinLogRequest(OffsetDateTime timestamp, Float dose, String insulinType) {
+  public InsulinLogResponse(Long id, OffsetDateTime timestamp, Float dose, String insulinType) {
+    this.id = id;
     this.timestamp = timestamp;
     this.dose = dose;
     this.insulinType = insulinType;
   }
 
-  public InsulinLogRequest timestamp(OffsetDateTime timestamp) {
+  public InsulinLogResponse id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @NotNull
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public InsulinLogResponse timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -59,13 +81,13 @@ public class InsulinLogRequest {
     this.timestamp = timestamp;
   }
 
-  public InsulinLogRequest dose(Float dose) {
+  public InsulinLogResponse dose(Float dose) {
     this.dose = dose;
     return this;
   }
 
   /**
-   * insulin (Unit)
+   * Get dose
    * @return dose
   */
   @NotNull
@@ -78,7 +100,7 @@ public class InsulinLogRequest {
     this.dose = dose;
   }
 
-  public InsulinLogRequest insulinType(String insulinType) {
+  public InsulinLogResponse insulinType(String insulinType) {
     this.insulinType = insulinType;
     return this;
   }
@@ -105,21 +127,23 @@ public class InsulinLogRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InsulinLogRequest insulinLogRequest = (InsulinLogRequest) o;
-    return Objects.equals(this.timestamp, insulinLogRequest.timestamp) &&
-        Objects.equals(this.dose, insulinLogRequest.dose) &&
-        Objects.equals(this.insulinType, insulinLogRequest.insulinType);
+    InsulinLogResponse insulinLogResponse = (InsulinLogResponse) o;
+    return Objects.equals(this.id, insulinLogResponse.id) &&
+        Objects.equals(this.timestamp, insulinLogResponse.timestamp) &&
+        Objects.equals(this.dose, insulinLogResponse.dose) &&
+        Objects.equals(this.insulinType, insulinLogResponse.insulinType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, dose, insulinType);
+    return Objects.hash(id, timestamp, dose, insulinType);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InsulinLogRequest {\n");
+    sb.append("class InsulinLogResponse {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    dose: ").append(toIndentedString(dose)).append("\n");
     sb.append("    insulinType: ").append(toIndentedString(insulinType)).append("\n");

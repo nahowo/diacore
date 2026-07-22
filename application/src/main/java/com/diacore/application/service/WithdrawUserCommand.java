@@ -3,14 +3,16 @@ package com.diacore.application.service;
 import com.diacore.application.usecase.WithdrawUser;
 import com.diacore.domain.common.usecase.Actor;
 import com.diacore.domain.user.port.out.DeleteUserPort;
+import com.diacore.exception.BusinessException;
+import com.diacore.exception.ErrorCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class WithdrawUserService implements WithdrawUser {
+public class WithdrawUserCommand implements WithdrawUser {
     private final DeleteUserPort deleteUserPort;
 
-    public WithdrawUserService(DeleteUserPort deleteUserPort) {
+    public WithdrawUserCommand(DeleteUserPort deleteUserPort) {
         this.deleteUserPort = deleteUserPort;
     }
 
@@ -18,7 +20,7 @@ public class WithdrawUserService implements WithdrawUser {
     @Transactional
     public Long execute(Actor actor, Request request) {
         if (actor.userId() == null) {
-            throw new IllegalArgumentException("User is not Authenticated. ");
+            throw new BusinessException(ErrorCode.UNAUTHORIZED_USER);
         }
 
         deleteUserPort.deleteById(actor.userId());

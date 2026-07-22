@@ -14,11 +14,13 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * MealLogRequest
+ * MealLogResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class MealLogRequest {
+public class MealLogResponse {
+
+  private Long id;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
@@ -29,20 +31,40 @@ public class MealLogRequest {
 
   private String foodDesc;
 
-  public MealLogRequest() {
+  public MealLogResponse() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public MealLogRequest(OffsetDateTime timestamp, Integer carbohydrateG, String mealType) {
+  public MealLogResponse(Long id, OffsetDateTime timestamp, Integer carbohydrateG, String mealType) {
+    this.id = id;
     this.timestamp = timestamp;
     this.carbohydrateG = carbohydrateG;
     this.mealType = mealType;
   }
 
-  public MealLogRequest timestamp(OffsetDateTime timestamp) {
+  public MealLogResponse id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @NotNull
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public MealLogResponse timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -61,13 +83,13 @@ public class MealLogRequest {
     this.timestamp = timestamp;
   }
 
-  public MealLogRequest carbohydrateG(Integer carbohydrateG) {
+  public MealLogResponse carbohydrateG(Integer carbohydrateG) {
     this.carbohydrateG = carbohydrateG;
     return this;
   }
 
   /**
-   * carb (g)
+   * Get carbohydrateG
    * @return carbohydrateG
   */
   @NotNull
@@ -80,7 +102,7 @@ public class MealLogRequest {
     this.carbohydrateG = carbohydrateG;
   }
 
-  public MealLogRequest mealType(String mealType) {
+  public MealLogResponse mealType(String mealType) {
     this.mealType = mealType;
     return this;
   }
@@ -99,7 +121,7 @@ public class MealLogRequest {
     this.mealType = mealType;
   }
 
-  public MealLogRequest foodDesc(String foodDesc) {
+  public MealLogResponse foodDesc(String foodDesc) {
     this.foodDesc = foodDesc;
     return this;
   }
@@ -126,22 +148,24 @@ public class MealLogRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MealLogRequest mealLogRequest = (MealLogRequest) o;
-    return Objects.equals(this.timestamp, mealLogRequest.timestamp) &&
-        Objects.equals(this.carbohydrateG, mealLogRequest.carbohydrateG) &&
-        Objects.equals(this.mealType, mealLogRequest.mealType) &&
-        Objects.equals(this.foodDesc, mealLogRequest.foodDesc);
+    MealLogResponse mealLogResponse = (MealLogResponse) o;
+    return Objects.equals(this.id, mealLogResponse.id) &&
+        Objects.equals(this.timestamp, mealLogResponse.timestamp) &&
+        Objects.equals(this.carbohydrateG, mealLogResponse.carbohydrateG) &&
+        Objects.equals(this.mealType, mealLogResponse.mealType) &&
+        Objects.equals(this.foodDesc, mealLogResponse.foodDesc);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, carbohydrateG, mealType, foodDesc);
+    return Objects.hash(id, timestamp, carbohydrateG, mealType, foodDesc);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MealLogRequest {\n");
+    sb.append("class MealLogResponse {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    carbohydrateG: ").append(toIndentedString(carbohydrateG)).append("\n");
     sb.append("    mealType: ").append(toIndentedString(mealType)).append("\n");

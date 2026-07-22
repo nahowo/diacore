@@ -2,11 +2,18 @@ README.md
 pom.xml
 src/main/java/com/diacore/api/model/BolusRequest.java
 src/main/java/com/diacore/api/model/CommonResponse.java
+src/main/java/com/diacore/api/model/CreatedResponse.java
 src/main/java/com/diacore/api/model/ExerciseRequest.java
+src/main/java/com/diacore/api/model/GlucoseLogPageResponse.java
 src/main/java/com/diacore/api/model/GlucoseLogRequest.java
+src/main/java/com/diacore/api/model/GlucoseLogResponse.java
+src/main/java/com/diacore/api/model/InsulinLogPageResponse.java
 src/main/java/com/diacore/api/model/InsulinLogRequest.java
+src/main/java/com/diacore/api/model/InsulinLogResponse.java
 src/main/java/com/diacore/api/model/LoginUserRequest.java
+src/main/java/com/diacore/api/model/MealLogPageResponse.java
 src/main/java/com/diacore/api/model/MealLogRequest.java
+src/main/java/com/diacore/api/model/MealLogResponse.java
 src/main/java/com/diacore/api/model/RecommendationResponse.java
 src/main/java/com/diacore/api/model/RegisterUserRequest.java
 src/main/java/com/diacore/api/model/SimulationResponse.java
@@ -15,6 +22,7 @@ src/main/java/com/diacore/api/model/TherapyParametersResponse.java
 src/main/java/com/diacore/api/model/TokenResponse.java
 src/main/java/com/diacore/api/operation/ApiUtil.java
 src/main/java/com/diacore/api/operation/LogCommandApi.java
+src/main/java/com/diacore/api/operation/LogQueryApi.java
 src/main/java/com/diacore/api/operation/ProfileCommandApi.java
 src/main/java/com/diacore/api/operation/ProfileQueryApi.java
 src/main/java/com/diacore/api/operation/SimulationQueryApi.java

@@ -5,7 +5,7 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.CommonResponse;
+import com.diacore.api.model.CreatedResponse;
 import com.diacore.api.model.RegisterUserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface UserCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -39,13 +39,13 @@ public interface UserCommandApi {
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<CommonResponse> registerUser(
+    default ResponseEntity<CreatedResponse> registerUser(
          @RequestBody RegisterUserRequest registerUserRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
+                    String exampleString = "{ \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -59,26 +59,16 @@ public interface UserCommandApi {
     /**
      * DELETE /api/v1/users/withdraw : Withdraw User
      *
-     * @return success (status code 200)
+     * @return success (status code 204)
      */
     @RequestMapping(
         method = RequestMethod.DELETE,
-        value = "/api/v1/users/withdraw",
-        produces = { "application/json" }
+        value = "/api/v1/users/withdraw"
     )
     
-    default ResponseEntity<CommonResponse> withdrawUser(
+    default ResponseEntity<Void> withdrawUser(
         
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0, \"status\" : \"SUCCESS\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

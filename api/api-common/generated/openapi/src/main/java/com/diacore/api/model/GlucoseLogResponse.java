@@ -14,11 +14,13 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * GlucoseLogRequest
+ * GlucoseLogResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class GlucoseLogRequest {
+public class GlucoseLogResponse {
+
+  private Long id;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime timestamp;
@@ -29,19 +31,39 @@ public class GlucoseLogRequest {
 
   private String source;
 
-  public GlucoseLogRequest() {
+  public GlucoseLogResponse() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public GlucoseLogRequest(OffsetDateTime timestamp, Integer value) {
+  public GlucoseLogResponse(Long id, OffsetDateTime timestamp, Integer value) {
+    this.id = id;
     this.timestamp = timestamp;
     this.value = value;
   }
 
-  public GlucoseLogRequest timestamp(OffsetDateTime timestamp) {
+  public GlucoseLogResponse id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @NotNull
+  @JsonProperty("id")
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public GlucoseLogResponse timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -60,13 +82,13 @@ public class GlucoseLogRequest {
     this.timestamp = timestamp;
   }
 
-  public GlucoseLogRequest value(Integer value) {
+  public GlucoseLogResponse value(Integer value) {
     this.value = value;
     return this;
   }
 
   /**
-   * glucose (mg/dL)
+   * Get value
    * @return value
   */
   @NotNull
@@ -79,7 +101,7 @@ public class GlucoseLogRequest {
     this.value = value;
   }
 
-  public GlucoseLogRequest trendArrow(String trendArrow) {
+  public GlucoseLogResponse trendArrow(String trendArrow) {
     this.trendArrow = trendArrow;
     return this;
   }
@@ -98,7 +120,7 @@ public class GlucoseLogRequest {
     this.trendArrow = trendArrow;
   }
 
-  public GlucoseLogRequest source(String source) {
+  public GlucoseLogResponse source(String source) {
     this.source = source;
     return this;
   }
@@ -125,22 +147,24 @@ public class GlucoseLogRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GlucoseLogRequest glucoseLogRequest = (GlucoseLogRequest) o;
-    return Objects.equals(this.timestamp, glucoseLogRequest.timestamp) &&
-        Objects.equals(this.value, glucoseLogRequest.value) &&
-        Objects.equals(this.trendArrow, glucoseLogRequest.trendArrow) &&
-        Objects.equals(this.source, glucoseLogRequest.source);
+    GlucoseLogResponse glucoseLogResponse = (GlucoseLogResponse) o;
+    return Objects.equals(this.id, glucoseLogResponse.id) &&
+        Objects.equals(this.timestamp, glucoseLogResponse.timestamp) &&
+        Objects.equals(this.value, glucoseLogResponse.value) &&
+        Objects.equals(this.trendArrow, glucoseLogResponse.trendArrow) &&
+        Objects.equals(this.source, glucoseLogResponse.source);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, value, trendArrow, source);
+    return Objects.hash(id, timestamp, value, trendArrow, source);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GlucoseLogRequest {\n");
+    sb.append("class GlucoseLogResponse {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    trendArrow: ").append(toIndentedString(trendArrow)).append("\n");

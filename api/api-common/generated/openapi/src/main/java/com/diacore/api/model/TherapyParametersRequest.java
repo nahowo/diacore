@@ -15,10 +15,8 @@ import jakarta.annotation.Generated;
  * TherapyParametersRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class TherapyParametersRequest {
-
-  private Long userId;
 
   private Float carbRatio;
 
@@ -31,29 +29,9 @@ public class TherapyParametersRequest {
   /**
    * Constructor with only required parameters
    */
-  public TherapyParametersRequest(Long userId, Float carbRatio, Float insulinSensitivity) {
-    this.userId = userId;
+  public TherapyParametersRequest(Float carbRatio, Float insulinSensitivity) {
     this.carbRatio = carbRatio;
     this.insulinSensitivity = insulinSensitivity;
-  }
-
-  public TherapyParametersRequest userId(Long userId) {
-    this.userId = userId;
-    return this;
-  }
-
-  /**
-   * Get userId
-   * @return userId
-  */
-  @NotNull
-  @JsonProperty("userId")
-  public Long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
   }
 
   public TherapyParametersRequest carbRatio(Float carbRatio) {
@@ -103,21 +81,19 @@ public class TherapyParametersRequest {
       return false;
     }
     TherapyParametersRequest therapyParametersRequest = (TherapyParametersRequest) o;
-    return Objects.equals(this.userId, therapyParametersRequest.userId) &&
-        Objects.equals(this.carbRatio, therapyParametersRequest.carbRatio) &&
+    return Objects.equals(this.carbRatio, therapyParametersRequest.carbRatio) &&
         Objects.equals(this.insulinSensitivity, therapyParametersRequest.insulinSensitivity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, carbRatio, insulinSensitivity);
+    return Objects.hash(carbRatio, insulinSensitivity);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class TherapyParametersRequest {\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    carbRatio: ").append(toIndentedString(carbRatio)).append("\n");
     sb.append("    insulinSensitivity: ").append(toIndentedString(insulinSensitivity)).append("\n");
     sb.append("}");

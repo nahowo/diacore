@@ -15,10 +15,8 @@ import jakarta.annotation.Generated;
  * ExerciseRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class ExerciseRequest {
-
-  private Long userId;
 
   private String exerciseType;
 
@@ -33,30 +31,10 @@ public class ExerciseRequest {
   /**
    * Constructor with only required parameters
    */
-  public ExerciseRequest(Long userId, String exerciseType, Integer durationMinutes, Integer currentBg) {
-    this.userId = userId;
+  public ExerciseRequest(String exerciseType, Integer durationMinutes, Integer currentBg) {
     this.exerciseType = exerciseType;
     this.durationMinutes = durationMinutes;
     this.currentBg = currentBg;
-  }
-
-  public ExerciseRequest userId(Long userId) {
-    this.userId = userId;
-    return this;
-  }
-
-  /**
-   * Get userId
-   * @return userId
-  */
-  @NotNull
-  @JsonProperty("userId")
-  public Long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
   }
 
   public ExerciseRequest exerciseType(String exerciseType) {
@@ -125,22 +103,20 @@ public class ExerciseRequest {
       return false;
     }
     ExerciseRequest exerciseRequest = (ExerciseRequest) o;
-    return Objects.equals(this.userId, exerciseRequest.userId) &&
-        Objects.equals(this.exerciseType, exerciseRequest.exerciseType) &&
+    return Objects.equals(this.exerciseType, exerciseRequest.exerciseType) &&
         Objects.equals(this.durationMinutes, exerciseRequest.durationMinutes) &&
         Objects.equals(this.currentBg, exerciseRequest.currentBg);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, exerciseType, durationMinutes, currentBg);
+    return Objects.hash(exerciseType, durationMinutes, currentBg);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExerciseRequest {\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    exerciseType: ").append(toIndentedString(exerciseType)).append("\n");
     sb.append("    durationMinutes: ").append(toIndentedString(durationMinutes)).append("\n");
     sb.append("    currentBg: ").append(toIndentedString(currentBg)).append("\n");

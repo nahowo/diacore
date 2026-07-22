@@ -5,18 +5,20 @@ import com.diacore.domain.common.usecase.Actor;
 import com.diacore.domain.user.model.User;
 import com.diacore.domain.user.port.out.LoadUserPort;
 import com.diacore.domain.user.port.out.TokenGeneratorPort;
+import com.diacore.exception.BusinessException;
+import com.diacore.exception.ErrorCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class AuthenticateUserService implements AuthenticateUser {
+public class AuthenticateUserQuery implements AuthenticateUser {
     private final LoadUserPort loadUserPort;
     private final PasswordEncoder passwordEncoder;
     private final TokenGeneratorPort tokenGeneratorPort;
 
-    public AuthenticateUserService(LoadUserPort loadUserPort, PasswordEncoder passwordEncoder,
-                                   TokenGeneratorPort tokenGeneratorPort) {
+    public AuthenticateUserQuery(LoadUserPort loadUserPort, PasswordEncoder passwordEncoder,
+                                 TokenGeneratorPort tokenGeneratorPort) {
         this.loadUserPort = loadUserPort;
         this.passwordEncoder = passwordEncoder;
         this.tokenGeneratorPort = tokenGeneratorPort;
@@ -26,10 +28,10 @@ public class AuthenticateUserService implements AuthenticateUser {
     @Transactional(readOnly = true)
     public String execute(Actor actor, Request request) {
         User user = loadUserPort.findByEmail(request.email())
-                .orElseThrow(() -> new IllegalArgumentException("Unknown email. "));
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
         if (!passwordEncoder.matches(request.password(), user.getPassword())) {
-            throw new IllegalArgumentException("Password is not matching. ");
+            throw new BusinessException(ErrorCode.INVALID_PASSWORD);
         }
 
         return tokenGeneratorPort.generateToken(user.getId());

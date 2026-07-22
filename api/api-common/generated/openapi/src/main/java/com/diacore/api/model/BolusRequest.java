@@ -15,10 +15,8 @@ import jakarta.annotation.Generated;
  * BolusRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-21T22:34:25.542590+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T15:06:08.398355+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class BolusRequest {
-
-  private Long userId;
 
   private Integer currentBg;
 
@@ -33,30 +31,10 @@ public class BolusRequest {
   /**
    * Constructor with only required parameters
    */
-  public BolusRequest(Long userId, Integer currentBg, Integer targetBg, Integer mealCarbsG) {
-    this.userId = userId;
+  public BolusRequest(Integer currentBg, Integer targetBg, Integer mealCarbsG) {
     this.currentBg = currentBg;
     this.targetBg = targetBg;
     this.mealCarbsG = mealCarbsG;
-  }
-
-  public BolusRequest userId(Long userId) {
-    this.userId = userId;
-    return this;
-  }
-
-  /**
-   * Get userId
-   * @return userId
-  */
-  @NotNull
-  @JsonProperty("userId")
-  public Long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
   }
 
   public BolusRequest currentBg(Integer currentBg) {
@@ -125,22 +103,20 @@ public class BolusRequest {
       return false;
     }
     BolusRequest bolusRequest = (BolusRequest) o;
-    return Objects.equals(this.userId, bolusRequest.userId) &&
-        Objects.equals(this.currentBg, bolusRequest.currentBg) &&
+    return Objects.equals(this.currentBg, bolusRequest.currentBg) &&
         Objects.equals(this.targetBg, bolusRequest.targetBg) &&
         Objects.equals(this.mealCarbsG, bolusRequest.mealCarbsG);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, currentBg, targetBg, mealCarbsG);
+    return Objects.hash(currentBg, targetBg, mealCarbsG);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BolusRequest {\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    currentBg: ").append(toIndentedString(currentBg)).append("\n");
     sb.append("    targetBg: ").append(toIndentedString(targetBg)).append("\n");
     sb.append("    mealCarbsG: ").append(toIndentedString(mealCarbsG)).append("\n");

@@ -5,6 +5,7 @@ import com.diacore.domain.log.model.InsulinLog;
 import com.diacore.domain.log.port.out.SaveInsulinLogPort;
 import com.diacore.application.usecase.RegisterInsulinLog;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RegisterInsulinCommand implements RegisterInsulinLog {
@@ -15,6 +16,7 @@ public class RegisterInsulinCommand implements RegisterInsulinLog {
     }
 
     @Override
+    @Transactional
     public Long execute(Actor actor, Request request) {
         InsulinLog insulinLog = InsulinLog.create(
                 actor.userId(),

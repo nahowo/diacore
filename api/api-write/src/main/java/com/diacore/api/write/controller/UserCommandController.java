@@ -1,12 +1,13 @@
 package com.diacore.api.write.controller;
 
 import com.diacore.api.model.CommonResponse;
+import com.diacore.api.model.CreatedResponse;
 import com.diacore.api.model.RegisterUserRequest;
 import com.diacore.api.operation.UserCommandApi;
 import com.diacore.application.usecase.RegisterUser;
 import com.diacore.application.usecase.WithdrawUser;
-import com.diacore.domain.common.usecase.Actor;
-import com.diacore.infrastructure.actor.ActorUtil;
+import com.diacore.infrastructure.actor.ActorSelector;
+import java.time.OffsetDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,34 +25,26 @@ public class UserCommandController implements UserCommandApi {
     }
 
     @Override
-    public ResponseEntity<CommonResponse> registerUser(RegisterUserRequest request) {
-        Actor actor = ActorUtil.anonymous();
+    public ResponseEntity<CreatedResponse> registerUser(RegisterUserRequest request) {
+        Long savedId = ActorSelector.anonymous()
+                .requestTo(registerUser)
+                .by(new RegisterUser.Request(
+                        request.getEmail(),
+                        request.getPassword(),
+                        request.getName())
+                );
 
-        RegisterUser.Request command = new RegisterUser.Request(
-                request.getEmail(),
-                request.getPassword(),
-                request.getName()
-        );
-
-        Long savedId = registerUser.execute(actor, command);
-
-        CommonResponse response = new CommonResponse()
+        CreatedResponse response = new CreatedResponse()
                 .id(savedId)
-                .status("SUCCESS");
+                .createdAt(OffsetDateTime.now());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
-    public ResponseEntity<CommonResponse> withdrawUser() {
-        Actor actor = ActorUtil.getCurrentActor();
+    public ResponseEntity<Void> withdrawUser() {
+        ActorSelector.current()
+                .requestTo(withdrawUser);
 
-        WithdrawUser.Request command = new WithdrawUser.Request();
-
-        Long deletedId = withdrawUser.execute(actor, command);
-
-        CommonResponse response = new CommonResponse()
-                .id(deletedId)
-                .status("SUCCESS");
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.noContent().build();
     }
 }

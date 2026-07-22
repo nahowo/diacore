@@ -1,6 +1,5 @@
-package com.diacore.response;
+package com.diacore.exception;
 
-import com.diacore.exception.ErrorCode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +30,14 @@ public class ErrorResponse {
         this.errors = new ArrayList<>();
     }
 
+    private ErrorResponse(ErrorCode errorCode, String message) {
+        this.timestamp = LocalDateTime.now();
+        this.status = errorCode.getStatus().value();
+        this.code = errorCode.getCode();
+        this.message = message;
+        this.errors = new ArrayList<>();
+    }
+
     public static ErrorResponse of(ErrorCode errorCode, BindingResult bindingResult) {
         return new ErrorResponse(errorCode, FieldError.of(bindingResult));
     }
@@ -43,6 +50,10 @@ public class ErrorResponse {
         String value = e.getValue() == null ? "" : e.getValue().toString();
         List<FieldError> errors = FieldError.of(e.getName(), value, e.getErrorCode());
         return new ErrorResponse(ErrorCode.INVALID_TYPE_VALUE, errors);
+    }
+
+    public static ErrorResponse of(ErrorCode errorCode, String message) {
+        return new ErrorResponse(errorCode, message);
     }
 
     public LocalDateTime getTimestamp() { return timestamp; }

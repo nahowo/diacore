@@ -5,6 +5,7 @@ import com.diacore.api.model.TokenResponse;
 import com.diacore.api.operation.UserQueryApi;
 import com.diacore.application.usecase.AuthenticateUser;
 import com.diacore.domain.common.usecase.Actor;
+import com.diacore.infrastructure.actor.ActorUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class UserQueryController implements UserQueryApi {
 
     @Override
     public ResponseEntity<TokenResponse> loginUser(LoginUserRequest request) {
-        Actor actor = new Actor(1L, ""); // TODO
+        Actor actor = ActorUtil.anonymous();
 
         AuthenticateUser.Request command = new AuthenticateUser.Request(
                 request.getEmail(),

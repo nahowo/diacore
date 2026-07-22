@@ -6,6 +6,7 @@ import com.diacore.api.operation.UserCommandApi;
 import com.diacore.application.usecase.RegisterUser;
 import com.diacore.application.usecase.WithdrawUser;
 import com.diacore.domain.common.usecase.Actor;
+import com.diacore.infrastructure.actor.ActorUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ public class UserCommandController implements UserCommandApi {
 
     @Override
     public ResponseEntity<CommonResponse> registerUser(RegisterUserRequest request) {
-        Actor actor = new Actor(1L, ""); // TODO
+        Actor actor = ActorUtil.anonymous();
 
         RegisterUser.Request command = new RegisterUser.Request(
                 request.getEmail(),
@@ -42,7 +43,7 @@ public class UserCommandController implements UserCommandApi {
 
     @Override
     public ResponseEntity<CommonResponse> withdrawUser() {
-        Actor actor = new Actor(1L, ""); // TODO
+        Actor actor = ActorUtil.getCurrentActor();
 
         WithdrawUser.Request command = new WithdrawUser.Request();
 

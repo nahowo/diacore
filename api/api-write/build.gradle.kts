@@ -9,6 +9,7 @@ dependencies {
     "implementation"(project(":application"))
     "implementation"(project(":infrastructure"))
     "implementation"("org.springframework.boot:spring-boot-starter-web")
+    "implementation"("me.paulschwarz:spring-dotenv:4.0.0")
 }
 
 tasks.bootJar {

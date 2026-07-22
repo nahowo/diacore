@@ -38,6 +38,12 @@ spring:
       host: localhost
       port: 6379
 
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+
 logging:
   level:
     com.diacore: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation: DEBUG

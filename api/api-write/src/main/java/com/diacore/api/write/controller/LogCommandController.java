@@ -7,6 +7,7 @@ import com.diacore.api.operation.LogCommandApi;
 import com.diacore.application.usecase.RegisterGlucoseLog;
 import com.diacore.application.usecase.RegisterInsulinLog;
 import com.diacore.domain.common.usecase.Actor;
+import com.diacore.infrastructure.actor.ActorUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class LogCommandController implements LogCommandApi {
 
     @Override
     public ResponseEntity<CommonResponse> createGlucoseLog(GlucoseLogRequest request) {
-        Actor actor = new Actor(1L, ""); // TODO
+        Actor actor = ActorUtil.getCurrentActor();
 
         RegisterGlucoseLog.Request command = new RegisterGlucoseLog.Request(
                 request.getTimestamp(),

@@ -26,10 +26,9 @@ public class TherapyCrAdapter implements SaveCarbRatioProfilePort, LoadCarbRatio
 
         List<TherapyCrJpaEntity> savedEntities = repository.saveAll(entities);
 
-        return CarbRatioProfile.withId(
-                carbRatioProfile.userId(),
-                savedEntities.stream().map(this::toDomain).toList(),
-                carbRatioProfile.timestamp()
+        return CarbRatioProfile.create(
+                entities.getFirst().getUserId(),
+                savedEntities.stream().map(this::toDomain).toList()
         );
     }
 
@@ -43,10 +42,9 @@ public class TherapyCrAdapter implements SaveCarbRatioProfilePort, LoadCarbRatio
         List<CarbRatioSegment> segments = entities.stream()
                 .map(this::toDomain).toList();
 
-        return Optional.of(CarbRatioProfile.withId(
+        return Optional.of(CarbRatioProfile.create(
                 userId,
-                segments,
-                entities.get(0).getTimestamp()
+                segments
         ));
     }
 

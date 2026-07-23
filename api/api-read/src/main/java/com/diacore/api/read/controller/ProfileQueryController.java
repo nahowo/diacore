@@ -2,9 +2,14 @@ package com.diacore.api.read.controller;
 
 import com.diacore.api.model.CarbRatioListResponse;
 import com.diacore.api.model.CarbRatioSegment;
+import com.diacore.api.model.InsulinSensitivityListResponse;
+import com.diacore.api.model.InsulinSensitivitySegment;
 import com.diacore.api.operation.ProfileQueryApi;
 import com.diacore.application.usecase.profile.GetCarbRatioProfile;
+import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile;
+import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile.Request;
 import com.diacore.domain.profile.model.CarbRatioProfile;
+import com.diacore.domain.profile.model.InsulinSensitivityProfile;
 import com.diacore.infrastructure.actor.ActorSelector;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class ProfileQueryController implements ProfileQueryApi {
     private final GetCarbRatioProfile getCarbRatioProfile;
+    private final GetInsulinSensitivityProfile getInsulinSensitivityProfile;
 
-    public ProfileQueryController(GetCarbRatioProfile getCarbRatioProfile) {
+    public ProfileQueryController(GetCarbRatioProfile getCarbRatioProfile,
+                                  GetInsulinSensitivityProfile getInsulinSensitivityProfile) {
         this.getCarbRatioProfile = getCarbRatioProfile;
+        this.getInsulinSensitivityProfile = getInsulinSensitivityProfile;
     }
 
     @Override
@@ -33,6 +41,25 @@ public class ProfileQueryController implements ProfileQueryApi {
                 )).toList();
 
         CarbRatioListResponse response = new CarbRatioListResponse(
+                responseSegments,
+                profile.timestamp()
+        );
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<InsulinSensitivityListResponse> getInsulinSensitivities() {
+        InsulinSensitivityProfile profile = ActorSelector.current()
+                .requestTo(getInsulinSensitivityProfile)
+                .by(new Request());
+
+        List<InsulinSensitivitySegment> responseSegments = profile.segments().stream()
+                .map(seg -> new InsulinSensitivitySegment(
+                        seg.startTime(),
+                        seg.value()
+                )).toList();
+
+        InsulinSensitivityListResponse response = new InsulinSensitivityListResponse(
                 responseSegments,
                 profile.timestamp()
         );

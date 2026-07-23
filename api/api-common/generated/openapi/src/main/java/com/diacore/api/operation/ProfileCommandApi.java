@@ -6,7 +6,7 @@
 package com.diacore.api.operation;
 
 import com.diacore.api.model.CarbRatioListRequest;
-import com.diacore.api.model.IsfListRequest;
+import com.diacore.api.model.InsulinSensitivityListRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T10:59:47.627344+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T15:44:28.520575+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -49,7 +49,7 @@ public interface ProfileCommandApi {
     /**
      * PUT /api/v1/profiles/insulin-sensitivities : update insulin sensitivities
      *
-     * @param isfListRequest  (required)
+     * @param insulinSensitivityListRequest  (required)
      * @return successfully updated (status code 204)
      */
     @RequestMapping(
@@ -59,7 +59,7 @@ public interface ProfileCommandApi {
     )
     
     default ResponseEntity<Void> updateInsulinSensitivities(
-         @RequestBody IsfListRequest isfListRequest
+         @RequestBody InsulinSensitivityListRequest insulinSensitivityListRequest
     ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 

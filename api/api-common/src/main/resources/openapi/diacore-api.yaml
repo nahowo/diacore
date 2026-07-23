@@ -168,7 +168,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IsfListResponse'
+                $ref: '#/components/schemas/InsulinSensitivityListResponse'
     put:
       tags:
         - ProfileCommand
@@ -179,7 +179,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/IsfListRequest'
+              $ref: '#/components/schemas/InsulinSensitivityListRequest'
       responses:
         '204':
           description: successfully updated
@@ -614,8 +614,7 @@ components:
           type: string
           format: date-time
 
-    # --- ISF DTOs ---
-    IsfSegment:
+    InsulinSensitivitySegment:
       type: object
       required: [ startTime, value ]
       properties:
@@ -629,23 +628,23 @@ components:
           description: "인슐린 민감도 (mg/dL/U)"
           example: 50.0
 
-    IsfListRequest:
+    InsulinSensitivityListRequest:
       type: object
       required: [ segments ]
       properties:
         segments:
           type: array
           items:
-            $ref: '#/components/schemas/IsfSegment'
+            $ref: '#/components/schemas/InsulinSensitivitySegment'
 
-    IsfListResponse:
+    InsulinSensitivityListResponse:
       type: object
       required: [ segments, updatedAt ]
       properties:
         segments:
           type: array
           items:
-            $ref: '#/components/schemas/IsfSegment'
+            $ref: '#/components/schemas/InsulinSensitivitySegment'
         updatedAt:
           type: string
           format: date-time

@@ -13,9 +13,9 @@ src/main/java/com/diacore/api/model/GlucoseLogResponse.java
 src/main/java/com/diacore/api/model/InsulinLogPageResponse.java
 src/main/java/com/diacore/api/model/InsulinLogRequest.java
 src/main/java/com/diacore/api/model/InsulinLogResponse.java
-src/main/java/com/diacore/api/model/IsfListRequest.java
-src/main/java/com/diacore/api/model/IsfListResponse.java
-src/main/java/com/diacore/api/model/IsfSegment.java
+src/main/java/com/diacore/api/model/InsulinSensitivityListRequest.java
+src/main/java/com/diacore/api/model/InsulinSensitivityListResponse.java
+src/main/java/com/diacore/api/model/InsulinSensitivitySegment.java
 src/main/java/com/diacore/api/model/LoginUserRequest.java
 src/main/java/com/diacore/api/model/MealLogPageResponse.java
 src/main/java/com/diacore/api/model/MealLogRequest.java

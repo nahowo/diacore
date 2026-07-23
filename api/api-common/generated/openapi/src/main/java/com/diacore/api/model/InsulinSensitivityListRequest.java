@@ -2,14 +2,12 @@ package com.diacore.api.model;
 
 import java.net.URI;
 import java.util.Objects;
-import com.diacore.api.model.CarbRatioSegment;
+import com.diacore.api.model.InsulinSensitivitySegment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
 import java.time.OffsetDateTime;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,36 +16,32 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * CarbRatioListResponse
+ * InsulinSensitivityListRequest
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T15:44:28.520575+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class CarbRatioListResponse {
+public class InsulinSensitivityListRequest {
 
   
-  private List<CarbRatioSegment> segments = new ArrayList<>();
+  private List<InsulinSensitivitySegment> segments = new ArrayList<>();
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime updatedAt;
-
-  public CarbRatioListResponse() {
+  public InsulinSensitivityListRequest() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public CarbRatioListResponse(List<CarbRatioSegment> segments, OffsetDateTime updatedAt) {
+  public InsulinSensitivityListRequest(List<InsulinSensitivitySegment> segments) {
     this.segments = segments;
-    this.updatedAt = updatedAt;
   }
 
-  public CarbRatioListResponse segments(List<CarbRatioSegment> segments) {
+  public InsulinSensitivityListRequest segments(List<InsulinSensitivitySegment> segments) {
     this.segments = segments;
     return this;
   }
 
-  public CarbRatioListResponse addSegmentsItem(CarbRatioSegment segmentsItem) {
+  public InsulinSensitivityListRequest addSegmentsItem(InsulinSensitivitySegment segmentsItem) {
     if (this.segments == null) {
       this.segments = new ArrayList<>();
     }
@@ -61,31 +55,12 @@ public class CarbRatioListResponse {
   */
   @NotNull
   @JsonProperty("segments")
-  public List<CarbRatioSegment> getSegments() {
+  public List<InsulinSensitivitySegment> getSegments() {
     return segments;
   }
 
-  public void setSegments(List<CarbRatioSegment> segments) {
+  public void setSegments(List<InsulinSensitivitySegment> segments) {
     this.segments = segments;
-  }
-
-  public CarbRatioListResponse updatedAt(OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-  /**
-   * Get updatedAt
-   * @return updatedAt
-  */
-  @NotNull
-  @JsonProperty("updatedAt")
-  public OffsetDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
   }
 
   @Override
@@ -96,22 +71,20 @@ public class CarbRatioListResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CarbRatioListResponse carbRatioListResponse = (CarbRatioListResponse) o;
-    return Objects.equals(this.segments, carbRatioListResponse.segments) &&
-        Objects.equals(this.updatedAt, carbRatioListResponse.updatedAt);
+    InsulinSensitivityListRequest insulinSensitivityListRequest = (InsulinSensitivityListRequest) o;
+    return Objects.equals(this.segments, insulinSensitivityListRequest.segments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(segments, updatedAt);
+    return Objects.hash(segments);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CarbRatioListResponse {\n");
+    sb.append("class InsulinSensitivityListRequest {\n");
     sb.append("    segments: ").append(toIndentedString(segments)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

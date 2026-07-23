@@ -12,29 +12,29 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * CarbRatioSegment
+ * InsulinSensitivitySegment
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T15:44:28.520575+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class CarbRatioSegment {
+public class InsulinSensitivitySegment {
 
   private Integer startTime;
 
   private Float value;
 
-  public CarbRatioSegment() {
+  public InsulinSensitivitySegment() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public CarbRatioSegment(Integer startTime, Float value) {
+  public InsulinSensitivitySegment(Integer startTime, Float value) {
     this.startTime = startTime;
     this.value = value;
   }
 
-  public CarbRatioSegment startTime(Integer startTime) {
+  public InsulinSensitivitySegment startTime(Integer startTime) {
     this.startTime = startTime;
     return this;
   }
@@ -53,13 +53,13 @@ public class CarbRatioSegment {
     this.startTime = startTime;
   }
 
-  public CarbRatioSegment value(Float value) {
+  public InsulinSensitivitySegment value(Float value) {
     this.value = value;
     return this;
   }
 
   /**
-   * 탄수비 (g/U)
+   * 인슐린 민감도 (mg/dL/U)
    * @return value
   */
   @NotNull
@@ -80,9 +80,9 @@ public class CarbRatioSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CarbRatioSegment carbRatioSegment = (CarbRatioSegment) o;
-    return Objects.equals(this.startTime, carbRatioSegment.startTime) &&
-        Objects.equals(this.value, carbRatioSegment.value);
+    InsulinSensitivitySegment insulinSensitivitySegment = (InsulinSensitivitySegment) o;
+    return Objects.equals(this.startTime, insulinSensitivitySegment.startTime) &&
+        Objects.equals(this.value, insulinSensitivitySegment.value);
   }
 
   @Override
@@ -93,7 +93,7 @@ public class CarbRatioSegment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CarbRatioSegment {\n");
+    sb.append("class InsulinSensitivitySegment {\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

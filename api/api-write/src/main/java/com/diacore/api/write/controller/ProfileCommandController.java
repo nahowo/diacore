@@ -1,6 +1,7 @@
 package com.diacore.api.write.controller;
 
 import com.diacore.api.model.CarbRatioListRequest;
+import com.diacore.api.model.InsulinSensitivityListRequest;
 import com.diacore.api.model.IsfListRequest;
 import com.diacore.api.operation.ProfileCommandApi;
 import com.diacore.application.usecase.profile.RegisterCarbRatioProfile;
@@ -39,7 +40,8 @@ public class ProfileCommandController implements ProfileCommandApi {
     }
 
     @Override
-    public ResponseEntity<Void> updateInsulinSensitivities(IsfListRequest request) {
+    public ResponseEntity<Void> updateInsulinSensitivities(
+            InsulinSensitivityListRequest request) {
         List<RegisterInsulinSensitivityProfile.Request.SegmentRequest> useCaseSegments = request.getSegments().stream()
                 .map(seg -> new RegisterInsulinSensitivityProfile.Request.SegmentRequest(
                         seg.getStartTime(),

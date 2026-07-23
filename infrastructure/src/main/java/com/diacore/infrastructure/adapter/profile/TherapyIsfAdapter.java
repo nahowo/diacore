@@ -20,6 +20,8 @@ public class TherapyIsfAdapter implements SaveInsulinSensitivityProfilePort, Loa
 
     @Override
     public InsulinSensitivityProfile save(InsulinSensitivityProfile insulinSensitivityProfile) {
+        repository.deleteAllByUserId(insulinSensitivityProfile.userId());
+
         List<TherapyIsfJpaEntity> entities = insulinSensitivityProfile.segments().stream()
                 .map(seg -> toEntity(insulinSensitivityProfile.userId(), seg))
                 .toList();

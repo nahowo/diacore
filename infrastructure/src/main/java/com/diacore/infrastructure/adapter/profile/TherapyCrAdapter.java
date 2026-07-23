@@ -20,6 +20,8 @@ public class TherapyCrAdapter implements SaveCarbRatioProfilePort, LoadCarbRatio
 
     @Override
     public CarbRatioProfile save(CarbRatioProfile carbRatioProfile) {
+        repository.deleteAllByUserId(carbRatioProfile.userId());
+
         List<TherapyCrJpaEntity> entities = carbRatioProfile.segments().stream()
                 .map(seg -> toEntity(carbRatioProfile.userId(), seg))
                 .toList();

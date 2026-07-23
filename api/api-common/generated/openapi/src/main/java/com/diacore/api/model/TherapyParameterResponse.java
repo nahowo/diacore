@@ -12,26 +12,60 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * TherapyParametersResponse
+ * TherapyParameterResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T17:25:14.259910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class TherapyParametersResponse {
+public class TherapyParameterResponse {
+
+  private Integer hour;
 
   private Float carbRatio;
 
   private Float insulinSensitivity;
 
-  public TherapyParametersResponse carbRatio(Float carbRatio) {
+  public TherapyParameterResponse() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public TherapyParameterResponse(Integer hour, Float carbRatio, Float insulinSensitivity) {
+    this.hour = hour;
+    this.carbRatio = carbRatio;
+    this.insulinSensitivity = insulinSensitivity;
+  }
+
+  public TherapyParameterResponse hour(Integer hour) {
+    this.hour = hour;
+    return this;
+  }
+
+  /**
+   * 요청한 기준 시간
+   * @return hour
+  */
+  @NotNull
+  @JsonProperty("hour")
+  public Integer getHour() {
+    return hour;
+  }
+
+  public void setHour(Integer hour) {
+    this.hour = hour;
+  }
+
+  public TherapyParameterResponse carbRatio(Float carbRatio) {
     this.carbRatio = carbRatio;
     return this;
   }
 
   /**
-   * carb ratio (g/U)
+   * 해당 시간에 적용되는 탄수비 (g/U)
    * @return carbRatio
   */
-  
+  @NotNull
   @JsonProperty("carbRatio")
   public Float getCarbRatio() {
     return carbRatio;
@@ -41,16 +75,16 @@ public class TherapyParametersResponse {
     this.carbRatio = carbRatio;
   }
 
-  public TherapyParametersResponse insulinSensitivity(Float insulinSensitivity) {
+  public TherapyParameterResponse insulinSensitivity(Float insulinSensitivity) {
     this.insulinSensitivity = insulinSensitivity;
     return this;
   }
 
   /**
-   * insulin sensitivity (mg/dL/U)
+   * 해당 시간에 적용되는 인슐린 민감도 (mg/dL/U)
    * @return insulinSensitivity
   */
-  
+  @NotNull
   @JsonProperty("insulinSensitivity")
   public Float getInsulinSensitivity() {
     return insulinSensitivity;
@@ -68,20 +102,22 @@ public class TherapyParametersResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    TherapyParametersResponse therapyParametersResponse = (TherapyParametersResponse) o;
-    return Objects.equals(this.carbRatio, therapyParametersResponse.carbRatio) &&
-        Objects.equals(this.insulinSensitivity, therapyParametersResponse.insulinSensitivity);
+    TherapyParameterResponse therapyParameterResponse = (TherapyParameterResponse) o;
+    return Objects.equals(this.hour, therapyParameterResponse.hour) &&
+        Objects.equals(this.carbRatio, therapyParameterResponse.carbRatio) &&
+        Objects.equals(this.insulinSensitivity, therapyParameterResponse.insulinSensitivity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(carbRatio, insulinSensitivity);
+    return Objects.hash(hour, carbRatio, insulinSensitivity);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class TherapyParametersResponse {\n");
+    sb.append("class TherapyParameterResponse {\n");
+    sb.append("    hour: ").append(toIndentedString(hour)).append("\n");
     sb.append("    carbRatio: ").append(toIndentedString(carbRatio)).append("\n");
     sb.append("    insulinSensitivity: ").append(toIndentedString(insulinSensitivity)).append("\n");
     sb.append("}");

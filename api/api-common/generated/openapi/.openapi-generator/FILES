@@ -23,6 +23,7 @@ src/main/java/com/diacore/api/model/MealLogResponse.java
 src/main/java/com/diacore/api/model/RecommendationResponse.java
 src/main/java/com/diacore/api/model/RegisterUserRequest.java
 src/main/java/com/diacore/api/model/SimulationResponse.java
+src/main/java/com/diacore/api/model/TherapyParameterResponse.java
 src/main/java/com/diacore/api/model/TherapyParametersRequest.java
 src/main/java/com/diacore/api/model/TherapyParametersResponse.java
 src/main/java/com/diacore/api/model/TokenResponse.java

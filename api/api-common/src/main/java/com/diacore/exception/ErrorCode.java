@@ -12,7 +12,10 @@ public enum ErrorCode {
     DUPLICATE_EMAIL(HttpStatus.BAD_REQUEST, "U001", "이미 사용 중인 이메일입니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U002", "가입되지 않은 이메일입니다."),
     INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "U003", "비밀번호가 일치하지 않습니다."),
-    UNAUTHORIZED_USER(HttpStatus.UNAUTHORIZED, "U004", "인증 정보가 없습니다. 로그인이 필요합니다.");
+    UNAUTHORIZED_USER(HttpStatus.UNAUTHORIZED, "U004", "인증 정보가 없습니다. 로그인이 필요합니다."),
+
+    THERAPY_CR_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "탄수비 설정이 없습니다."),
+    THERAPY_ISF_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "인슐린 민감도 설정이 없습니다.");
 
     private final HttpStatus status;
     private final String code;

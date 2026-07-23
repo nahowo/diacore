@@ -8,6 +8,7 @@ package com.diacore.api.operation;
 import com.diacore.api.model.CarbRatioListResponse;
 import com.diacore.api.model.InsulinSensitivityListResponse;
 import com.diacore.api.model.RecommendationResponse;
+import com.diacore.api.model.TherapyParameterResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T15:44:28.520575+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T17:25:14.259910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -102,6 +103,35 @@ public interface ProfileQueryApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "[ { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 }, { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 } ]";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /api/v1/profiles/parameters : get active therapy parameters by hour
+     *
+     * @param hour 조회할 기준 시간 (0~23) (required)
+     * @return success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v1/profiles/parameters",
+        produces = { "application/json" }
+    )
+    
+    default ResponseEntity<TherapyParameterResponse> getTherapyParametersByHour(
+         @RequestParam(value = "hour", required = true) Integer hour
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"hour\" : 15, \"carbRatio\" : 12.5, \"insulinSensitivity\" : 45.0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

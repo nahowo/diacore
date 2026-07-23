@@ -184,6 +184,30 @@ paths:
         '204':
           description: successfully updated
 
+  /api/v1/profiles/parameters:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get active therapy parameters by hour
+      operationId: getTherapyParametersByHour
+      parameters:
+        - name: hour
+          in: query
+          required: true
+          description: "조회할 기준 시간 (0~23)"
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 23
+            example: 15
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TherapyParameterResponse'
+
   /api/v1/profiles/recommendations:
     get:
       tags:
@@ -648,3 +672,22 @@ components:
         updatedAt:
           type: string
           format: date-time
+
+    TherapyParameterResponse:
+      type: object
+      required: [ hour, carbRatio, insulinSensitivity ]
+      properties:
+        hour:
+          type: integer
+          description: "요청한 기준 시간"
+          example: 15
+        carbRatio:
+          type: number
+          format: float
+          description: "해당 시간에 적용되는 탄수비 (g/U)"
+          example: 12.5
+        insulinSensitivity:
+          type: number
+          format: float
+          description: "해당 시간에 적용되는 인슐린 민감도 (mg/dL/U)"
+          example: 45.0

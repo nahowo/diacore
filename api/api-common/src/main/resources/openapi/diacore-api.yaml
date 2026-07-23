@@ -128,44 +128,61 @@ paths:
   # ==========================================
   # Profile
   # ==========================================
-  /api/v1/profiles/parameters:
+  /api/v1/profiles/carb-ratios:
     get:
       tags:
         - ProfileQuery
-      summary: get therapy parameters
-      operationId: getTherapyParameters
-      parameters:
-        - name: userId
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: int64
+      summary: get carb ratios (시간대별 탄수비 조회)
+      operationId: getCarbRatios
       responses:
         '200':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TherapyParametersResponse'
+                $ref: '#/components/schemas/CarbRatioListResponse'
     put:
       tags:
         - ProfileCommand
-      summary: update therapy parameters
-      operationId: updateTherapyParameters
+      summary: update carb ratios (시간대별 탄수비 일괄 수정)
+      operationId: updateCarbRatios
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TherapyParametersRequest'
+              $ref: '#/components/schemas/CarbRatioListRequest'
+      responses:
+        '204':
+          description: successfully updated
+
+  /api/v1/profiles/insulin-sensitivities:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get insulin sensitivities
+      operationId: getInsulinSensitivities
       responses:
         '200':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CommonResponse'
+                $ref: '#/components/schemas/IsfListResponse'
+    put:
+      tags:
+        - ProfileCommand
+      summary: update insulin sensitivities
+      operationId: updateInsulinSensitivities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsfListRequest'
+      responses:
+        '204':
+          description: successfully updated
 
   /api/v1/profiles/recommendations:
     get:
@@ -561,3 +578,74 @@ components:
             $ref: '#/components/schemas/InsulinLogResponse'
         totalElements: { type: integer, format: int64 }
         pageNumber: { type: integer }
+
+    CarbRatioSegment:
+      type: object
+      required: [ startTime, value ]
+      properties:
+        startTime:
+          type: integer
+          description: "시작 시간 (0~23)"
+          example: 8
+        value:
+          type: number
+          format: float
+          description: "탄수비 (g/U)"
+          example: 12.5
+
+    CarbRatioListRequest:
+      type: object
+      required: [ segments ]
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarbRatioSegment'
+
+    CarbRatioListResponse:
+      type: object
+      required: [ segments, updatedAt ]
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarbRatioSegment'
+        updatedAt:
+          type: string
+          format: date-time
+
+    # --- ISF DTOs ---
+    IsfSegment:
+      type: object
+      required: [ startTime, value ]
+      properties:
+        startTime:
+          type: integer
+          description: "시작 시간 (0~23)"
+          example: 0
+        value:
+          type: number
+          format: float
+          description: "인슐린 민감도 (mg/dL/U)"
+          example: 50.0
+
+    IsfListRequest:
+      type: object
+      required: [ segments ]
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/IsfSegment'
+
+    IsfListResponse:
+      type: object
+      required: [ segments, updatedAt ]
+      properties:
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/IsfSegment'
+        updatedAt:
+          type: string
+          format: date-time

@@ -5,8 +5,9 @@
  */
 package com.diacore.api.operation;
 
+import com.diacore.api.model.CarbRatioListResponse;
+import com.diacore.api.model.IsfListResponse;
 import com.diacore.api.model.RecommendationResponse;
-import com.diacore.api.model.TherapyParametersResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,68 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T16:00:42.322358+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T10:59:47.627344+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    /**
+     * GET /api/v1/profiles/carb-ratios : get carb ratios (시간대별 탄수비 조회)
+     *
+     * @return success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v1/profiles/carb-ratios",
+        produces = { "application/json" }
+    )
+    
+    default ResponseEntity<CarbRatioListResponse> getCarbRatios(
+        
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"segments\" : [ { \"startTime\" : 8, \"value\" : 12.5 }, { \"startTime\" : 8, \"value\" : 12.5 } ], \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /api/v1/profiles/insulin-sensitivities : get insulin sensitivities
+     *
+     * @return success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v1/profiles/insulin-sensitivities",
+        produces = { "application/json" }
+    )
+    
+    default ResponseEntity<IsfListResponse> getInsulinSensitivities(
+        
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"segments\" : [ { \"startTime\" : 0, \"value\" : 50.0 }, { \"startTime\" : 0, \"value\" : 50.0 } ], \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * GET /api/v1/profiles/recommendations : get therapy parameters recommendation history
@@ -45,35 +102,6 @@ public interface ProfileQueryApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "[ { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 }, { \"parameterType\" : \"CARB_RATIO\", \"reasonText\" : \"최근 7일간 아침 식후 고혈당 지속\", \"originalValue\" : 6.0274563, \"id\" : 0, \"recommendedValue\" : 1.4658129 } ]";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * GET /api/v1/profiles/parameters : get therapy parameters
-     *
-     * @param userId  (required)
-     * @return success (status code 200)
-     */
-    @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/api/v1/profiles/parameters",
-        produces = { "application/json" }
-    )
-    
-    default ResponseEntity<TherapyParametersResponse> getTherapyParameters(
-         @RequestParam(value = "userId", required = true) Long userId
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"carbRatio\" : 0.8008282, \"insulinSensitivity\" : 6.0274563 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

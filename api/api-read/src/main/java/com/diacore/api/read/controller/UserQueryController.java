@@ -3,7 +3,7 @@ package com.diacore.api.read.controller;
 import com.diacore.api.model.LoginUserRequest;
 import com.diacore.api.model.TokenResponse;
 import com.diacore.api.operation.UserQueryApi;
-import com.diacore.application.usecase.AuthenticateUser;
+import com.diacore.application.usecase.user.AuthenticateUser;
 import com.diacore.domain.common.usecase.Actor;
 import com.diacore.infrastructure.actor.ActorUtil;
 import org.springframework.http.HttpStatus;

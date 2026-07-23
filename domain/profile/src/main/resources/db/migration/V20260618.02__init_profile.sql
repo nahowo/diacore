@@ -8,10 +8,49 @@ CREATE TABLE user_profiles (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+CREATE TABLE therapy_cr (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    start_time TINYINT NOT NULL CHECK (start_time BETWEEN 0 AND 23),
+    carb_ratio FLOAT NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    CONSTRAINT uk_user_cr_time UNIQUE (user_id, start_time)
+);
+
+CREATE TABLE therapy_cr_history (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    start_time TINYINT NOT NULL,
+    original_value FLOAT NOT NULL,
+    new_value FLOAT NOT NULL,
+    reason_text VARCHAR(255),
+    created_at DATETIME(6) NOT NULL
+);
+
+CREATE TABLE therapy_isf (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    start_time TINYINT NOT NULL CHECK (start_time BETWEEN 0 AND 23),
+    insulin_sensitivity FLOAT NOT NULL,
+    updated_at DATETIME(6) NOT NULL,
+    CONSTRAINT uk_user_isf_time UNIQUE (user_id, start_time)
+);
+
+CREATE TABLE therapy_isf_history (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    start_time TINYINT NOT NULL,
+    original_value FLOAT NOT NULL,
+    new_value FLOAT NOT NULL,
+    reason_text VARCHAR(255),
+    created_at DATETIME(6) NOT NULL
+);
+
 CREATE TABLE therapy_parameters (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
     start_hour INT NOT NULL,
+    end_hour INT NOT NULL,
     carb_ratio DECIMAL(5,2) NOT NULL,
     insulin_sensitivity DECIMAL(5,2) NOT NULL,
     basal_rate DECIMAL(5,2),

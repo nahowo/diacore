@@ -5,8 +5,8 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.CommonResponse;
-import com.diacore.api.model.TherapyParametersRequest;
+import com.diacore.api.model.CarbRatioListRequest;
+import com.diacore.api.model.IsfListRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-22T16:00:42.322358+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T10:59:47.627344+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -27,30 +27,40 @@ public interface ProfileCommandApi {
     }
 
     /**
-     * PUT /api/v1/profiles/parameters : update therapy parameters
+     * PUT /api/v1/profiles/carb-ratios : update carb ratios (시간대별 탄수비 일괄 수정)
      *
-     * @param therapyParametersRequest  (required)
-     * @return success (status code 200)
+     * @param carbRatioListRequest  (required)
+     * @return successfully updated (status code 204)
      */
     @RequestMapping(
         method = RequestMethod.PUT,
-        value = "/api/v1/profiles/parameters",
-        produces = { "application/json" },
+        value = "/api/v1/profiles/carb-ratios",
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<CommonResponse> updateTherapyParameters(
-         @RequestBody TherapyParametersRequest therapyParametersRequest
+    default ResponseEntity<Void> updateCarbRatios(
+         @RequestBody CarbRatioListRequest carbRatioListRequest
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"code\" : \"SUCCESS\", \"data\" : { \"key\" : \"\" }, \"success\" : true, \"message\" : \"요청이 성공적으로 처리되었습니다.\", \"timestamp\" : \"2000-01-23T04:56:07.000+00:00\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * PUT /api/v1/profiles/insulin-sensitivities : update insulin sensitivities
+     *
+     * @param isfListRequest  (required)
+     * @return successfully updated (status code 204)
+     */
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        value = "/api/v1/profiles/insulin-sensitivities",
+        consumes = { "application/json" }
+    )
+    
+    default ResponseEntity<Void> updateInsulinSensitivities(
+         @RequestBody IsfListRequest isfListRequest
+    ) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

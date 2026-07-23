@@ -1,11 +1,10 @@
 package com.diacore.api.write.controller;
 
-import com.diacore.api.model.CommonResponse;
 import com.diacore.api.model.CreatedResponse;
 import com.diacore.api.model.RegisterUserRequest;
 import com.diacore.api.operation.UserCommandApi;
-import com.diacore.application.usecase.RegisterUser;
-import com.diacore.application.usecase.WithdrawUser;
+import com.diacore.application.usecase.user.RegisterUser;
+import com.diacore.application.usecase.user.WithdrawUser;
 import com.diacore.infrastructure.actor.ActorSelector;
 import java.time.OffsetDateTime;
 import org.springframework.http.HttpStatus;

@@ -7,9 +7,9 @@ import com.diacore.api.model.InsulinLogResponse;
 import com.diacore.api.model.MealLogPageResponse;
 import com.diacore.api.model.MealLogResponse;
 import com.diacore.api.operation.LogQueryApi;
-import com.diacore.application.usecase.GetGlucoseLogs;
-import com.diacore.application.usecase.GetInsulinLogs;
-import com.diacore.application.usecase.GetMealLogs;
+import com.diacore.application.usecase.log.GetGlucoseLogs;
+import com.diacore.application.usecase.log.GetInsulinLogs;
+import com.diacore.application.usecase.log.GetMealLogs;
 import com.diacore.domain.common.model.PageResult;
 import com.diacore.domain.log.model.GlucoseLog;
 import com.diacore.domain.log.model.InsulinLog;
@@ -41,10 +41,10 @@ public class LogQueryController implements LogQueryApi {
 
         List<InsulinLogResponse> responseContent = result.content().stream()
                 .map(log -> new InsulinLogResponse()
-                        .id(log.getId())
-                        .timestamp(log.getTimestamp())
-                        .dose(log.getDose())
-                        .insulinType(log.getType())
+                        .id(log.id())
+                        .timestamp(log.timestamp())
+                        .dose(log.dose())
+                        .insulinType(log.type())
                 ).toList();
 
         InsulinLogPageResponse response = new InsulinLogPageResponse()
@@ -62,11 +62,11 @@ public class LogQueryController implements LogQueryApi {
 
         List<MealLogResponse> responseContent = result.content().stream()
                 .map(log -> new MealLogResponse()
-                        .id(log.getId())
-                        .timestamp(log.getTimestamp())
-                        .carbohydrateG(log.getCarbohydrateG())
-                        .mealType(log.getMealType())
-                        .foodDesc(log.getFoodDesc())
+                        .id(log.id())
+                        .timestamp(log.timestamp())
+                        .carbohydrateG(log.carbohydrateG())
+                        .mealType(log.mealType())
+                        .foodDesc(log.foodDesc())
                 ).toList();
 
         MealLogPageResponse response = new MealLogPageResponse()
@@ -85,10 +85,10 @@ public class LogQueryController implements LogQueryApi {
 
         List<GlucoseLogResponse> responseContent = result.content().stream()
                 .map(log -> new GlucoseLogResponse()
-                        .id(log.getId())
-                        .timestamp(log.getTimestamp())
-                        .value(log.getValue())
-                        .source(log.getSource())
+                        .id(log.id())
+                        .timestamp(log.timestamp())
+                        .value(log.value())
+                        .source(log.source())
                 ).toList();
 
         GlucoseLogPageResponse response = new GlucoseLogPageResponse()

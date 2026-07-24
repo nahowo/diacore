@@ -8,6 +8,7 @@ dependencies {
     implementation("io.swagger.core.v3:swagger-annotations:2.2.20")
     compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
     implementation(project(":domain:common"))
+    implementation(project(":domain:profile"))
 }
 
 openApiGenerate {
@@ -28,6 +29,14 @@ openApiGenerate {
         "useBeanValidation" to "false",
         "annotationLibrary" to "none",
         "documentationProvider" to "none",
+    ))
+
+    typeMappings.set(mapOf(
+        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource"
+    ))
+
+    importMappings.set(mapOf(
+        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource"
     ))
 }
 

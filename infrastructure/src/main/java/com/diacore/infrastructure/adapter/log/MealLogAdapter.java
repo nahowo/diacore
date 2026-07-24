@@ -56,6 +56,9 @@ public class MealLogAdapter implements SaveMealLogPort, LoadMealPort {
         return new PageResult<>(
                 content,
                 entities.getTotalElements(),
+                entities.getNumber(),
+                entities.getTotalPages(),
+                entities.getSize(),
                 entities.getNumber()
         );
     }

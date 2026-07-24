@@ -5,7 +5,9 @@
  */
 package com.diacore.api.operation;
 
+import com.diacore.api.model.CarbRatioHistoryPageResponse;
 import com.diacore.api.model.CarbRatioListResponse;
+import com.diacore.api.model.InsulinSensitivityHistoryPageResponse;
 import com.diacore.api.model.InsulinSensitivityListResponse;
 import com.diacore.api.model.RecommendationResponse;
 import com.diacore.api.model.TherapyParameterResponse;
@@ -21,12 +23,43 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T17:25:14.259910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-24T14:39:54.676685+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    /**
+     * GET /api/v1/profiles/carb-ratios/histories : get carb ratio update history
+     *
+     * @param page  (optional, default to 0)
+     * @param size  (optional, default to 20)
+     * @return Success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v1/profiles/carb-ratios/histories",
+        produces = { "application/json" }
+    )
+    
+    default ResponseEntity<CarbRatioHistoryPageResponse> getCarbRatioHistory(
+         @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+         @RequestParam(value = "size", required = false, defaultValue = "20") Integer size
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"number\" : 5, \"size\" : 1, \"totalPages\" : 0, \"content\" : [ { \"snapshotSegments\" : [ { \"startTime\" : 7, \"value\" : 12.0 }, { \"startTime\" : 7, \"value\" : 12.0 } ], \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"reasonText\" : \"점심 식후 혈당이 튀어서 전체적으로 비율 상향\" }, { \"snapshotSegments\" : [ { \"startTime\" : 7, \"value\" : 12.0 }, { \"startTime\" : 7, \"value\" : 12.0 } ], \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"reasonText\" : \"점심 식후 혈당이 튀어서 전체적으로 비율 상향\" } ], \"totalElements\" : 6 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * GET /api/v1/profiles/carb-ratios : get carb ratios (시간대별 탄수비 조회)
@@ -74,6 +107,37 @@ public interface ProfileQueryApi {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
                     String exampleString = "{ \"segments\" : [ { \"startTime\" : 0, \"value\" : 50.0 }, { \"startTime\" : 0, \"value\" : 50.0 } ], \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /api/v1/profiles/insulin-sensitivities/histories : get insulin sensitivity update history
+     *
+     * @param page  (optional, default to 0)
+     * @param size  (optional, default to 20)
+     * @return Success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.GET,
+        value = "/api/v1/profiles/insulin-sensitivities/histories",
+        produces = { "application/json" }
+    )
+    
+    default ResponseEntity<InsulinSensitivityHistoryPageResponse> getInsulinSensitivityHistory(
+         @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+         @RequestParam(value = "size", required = false, defaultValue = "20") Integer size
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"number\" : 5, \"size\" : 1, \"totalPages\" : 0, \"content\" : [ { \"snapshotSegments\" : [ { \"startTime\" : 7, \"value\" : 12.0 }, { \"startTime\" : 7, \"value\" : 12.0 } ], \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"reasonText\" : \"점심 식후 혈당이 튀어서 전체적으로 비율 상향\" }, { \"snapshotSegments\" : [ { \"startTime\" : 7, \"value\" : 12.0 }, { \"startTime\" : 7, \"value\" : 12.0 } ], \"createdAt\" : \"2000-01-23T04:56:07.000+00:00\", \"reasonText\" : \"점심 식후 혈당이 튀어서 전체적으로 비율 상향\" } ], \"totalElements\" : 6 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

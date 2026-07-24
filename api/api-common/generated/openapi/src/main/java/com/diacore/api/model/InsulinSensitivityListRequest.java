@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.diacore.api.model.InsulinSensitivitySegment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,11 +20,15 @@ import jakarta.annotation.Generated;
  * InsulinSensitivityListRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T17:25:14.259910+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-24T14:39:54.676685+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public class InsulinSensitivityListRequest {
 
   
   private List<InsulinSensitivitySegment> segments = new ArrayList<>();
+
+  private com.diacore.domain.profile.model.ChangeSource changeSource;
+
+  private String reasonText;
 
   public InsulinSensitivityListRequest() {
     super();
@@ -32,8 +37,9 @@ public class InsulinSensitivityListRequest {
   /**
    * Constructor with only required parameters
    */
-  public InsulinSensitivityListRequest(List<InsulinSensitivitySegment> segments) {
+  public InsulinSensitivityListRequest(List<InsulinSensitivitySegment> segments, com.diacore.domain.profile.model.ChangeSource changeSource) {
     this.segments = segments;
+    this.changeSource = changeSource;
   }
 
   public InsulinSensitivityListRequest segments(List<InsulinSensitivitySegment> segments) {
@@ -63,6 +69,44 @@ public class InsulinSensitivityListRequest {
     this.segments = segments;
   }
 
+  public InsulinSensitivityListRequest changeSource(com.diacore.domain.profile.model.ChangeSource changeSource) {
+    this.changeSource = changeSource;
+    return this;
+  }
+
+  /**
+   * Get changeSource
+   * @return changeSource
+  */
+  @NotNull
+  @JsonProperty("changeSource")
+  public com.diacore.domain.profile.model.ChangeSource getChangeSource() {
+    return changeSource;
+  }
+
+  public void setChangeSource(com.diacore.domain.profile.model.ChangeSource changeSource) {
+    this.changeSource = changeSource;
+  }
+
+  public InsulinSensitivityListRequest reasonText(String reasonText) {
+    this.reasonText = reasonText;
+    return this;
+  }
+
+  /**
+   * 변경 상세 사유 (선택 사항)
+   * @return reasonText
+  */
+  
+  @JsonProperty("reasonText")
+  public String getReasonText() {
+    return reasonText;
+  }
+
+  public void setReasonText(String reasonText) {
+    this.reasonText = reasonText;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -72,12 +116,14 @@ public class InsulinSensitivityListRequest {
       return false;
     }
     InsulinSensitivityListRequest insulinSensitivityListRequest = (InsulinSensitivityListRequest) o;
-    return Objects.equals(this.segments, insulinSensitivityListRequest.segments);
+    return Objects.equals(this.segments, insulinSensitivityListRequest.segments) &&
+        Objects.equals(this.changeSource, insulinSensitivityListRequest.changeSource) &&
+        Objects.equals(this.reasonText, insulinSensitivityListRequest.reasonText);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(segments);
+    return Objects.hash(segments, changeSource, reasonText);
   }
 
   @Override
@@ -85,6 +131,8 @@ public class InsulinSensitivityListRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class InsulinSensitivityListRequest {\n");
     sb.append("    segments: ").append(toIndentedString(segments)).append("\n");
+    sb.append("    changeSource: ").append(toIndentedString(changeSource)).append("\n");
+    sb.append("    reasonText: ").append(toIndentedString(reasonText)).append("\n");
     sb.append("}");
     return sb.toString();
   }

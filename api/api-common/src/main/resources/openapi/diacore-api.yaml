@@ -156,6 +156,31 @@ paths:
         '204':
           description: successfully updated
 
+  /api/v1/profiles/carb-ratios/histories:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get carb ratio update history
+      operationId: getCarbRatioHistory
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarbRatioHistoryPageResponse'
+
   /api/v1/profiles/insulin-sensitivities:
     get:
       tags:
@@ -183,6 +208,31 @@ paths:
       responses:
         '204':
           description: successfully updated
+
+  /api/v1/profiles/insulin-sensitivities/histories:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get insulin sensitivity update history
+      operationId: getInsulinSensitivityHistory
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsulinSensitivityHistoryPageResponse'
 
   /api/v1/profiles/parameters:
     get:
@@ -619,12 +669,17 @@ components:
 
     CarbRatioListRequest:
       type: object
-      required: [ segments ]
+      required: [ segments, changeSource ]
       properties:
         segments:
           type: array
           items:
             $ref: '#/components/schemas/CarbRatioSegment'
+        changeSource:
+          $ref: '#/components/schemas/ChangeSource'
+        reasonText:
+          type: string
+          description: "변경 상세 사유 (선택 사항)"
 
     CarbRatioListResponse:
       type: object
@@ -654,12 +709,17 @@ components:
 
     InsulinSensitivityListRequest:
       type: object
-      required: [ segments ]
+      required: [ segments, changeSource ]
       properties:
         segments:
           type: array
           items:
             $ref: '#/components/schemas/InsulinSensitivitySegment'
+        changeSource:
+          $ref: '#/components/schemas/ChangeSource'
+        reasonText:
+          type: string
+          description: "변경 상세 사유 (선택 사항)"
 
     InsulinSensitivityListResponse:
       type: object
@@ -691,3 +751,78 @@ components:
           format: float
           description: "해당 시간에 적용되는 인슐린 민감도 (mg/dL/U)"
           example: 45.0
+
+    ChangeSource:
+      type: string
+      enum:
+        - MANUAL
+        - AI_RECOMMENDED
+      description: "변경 출처 (MANUAL: 수동 입력, AI_RECOMMENDED: AI 추천값 적용)"
+
+    CarbRatioHistoryPageResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileSnapshotHistoryResponse'
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+        number:
+          type: integer
+
+    InsulinSensitivityHistoryPageResponse:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileSnapshotHistoryResponse'
+        totalPages:
+          type: integer
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+        number:
+          type: integer
+
+    ProfileSnapshotHistoryResponse:
+      type: object
+      required: [ snapshotSegments, changeSource, createdAt ]
+      properties:
+        snapshotSegments:
+          type: array
+          description: "변경되기 직전의 전체 24시간 세그먼트 데이터 (스냅샷)"
+          items:
+            $ref: '#/components/schemas/TherapySegment'
+        changeSource:
+          $ref: '#/components/schemas/ChangeSource'
+        reasonText:
+          type: string
+          description: "변경 상세 사유 (선택)"
+          example: "점심 식후 혈당이 튀어서 전체적으로 비율 상향"
+        createdAt:
+          type: string
+          format: date-time
+          description: "해당 스냅샷이 기록된 일시"
+
+    TherapySegment:
+      type: object
+      required: [ startTime, value ]
+      properties:
+        startTime:
+          type: integer
+          description: "적용 시작 시간 (0~23)"
+          example: 7
+        value:
+          type: number
+          format: float
+          description: "설정 값 (CR의 경우 g/U, ISF의 경우 mg/dL/U)"
+          example: 12.0

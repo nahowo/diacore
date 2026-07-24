@@ -20,11 +20,11 @@ CREATE TABLE therapy_cr (
 CREATE TABLE therapy_cr_history (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    start_time TINYINT NOT NULL,
-    original_value FLOAT NOT NULL,
-    new_value FLOAT NOT NULL,
+    profile_snapshot JSON NOT NULL,
+    change_source VARCHAR(30) NOT NULL,
     reason_text VARCHAR(255),
-    created_at DATETIME(6) NOT NULL
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_cr_history_user_id (user_id)
 );
 
 CREATE TABLE therapy_isf (
@@ -39,26 +39,12 @@ CREATE TABLE therapy_isf (
 CREATE TABLE therapy_isf_history (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    start_time TINYINT NOT NULL,
-    original_value FLOAT NOT NULL,
-    new_value FLOAT NOT NULL,
+    profile_snapshot JSON NOT NULL,
+    change_source VARCHAR(30) NOT NULL,
     reason_text VARCHAR(255),
-    created_at DATETIME(6) NOT NULL
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_isf_history_user_id (user_id)
 );
-
-CREATE TABLE therapy_parameters (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT NOT NULL,
-    start_hour INT NOT NULL,
-    end_hour INT NOT NULL,
-    carb_ratio DECIMAL(5,2) NOT NULL,
-    insulin_sensitivity DECIMAL(5,2) NOT NULL,
-    basal_rate DECIMAL(5,2),
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT chk_start_hour CHECK (start_hour >= 0 AND start_hour <= 23)
-);
-
-CREATE INDEX idx_therapy_user_hour ON therapy_parameters (user_id, start_hour);
 
 CREATE TABLE recommendation_histories (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,

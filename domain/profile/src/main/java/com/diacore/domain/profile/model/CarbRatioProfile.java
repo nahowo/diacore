@@ -23,7 +23,7 @@ public record CarbRatioProfile(
         return new CarbRatioProfile(userId, segments, OffsetDateTime.now());
     }
 
-    public Float getRatioForTime(int currentHour) {
+    public Float getCarbRatioForTime(int currentHour) {
         if (currentHour < 0 || currentHour > 23) {
             throw new IllegalArgumentException("시간은 0~23 사이여야 합니다.");
         }

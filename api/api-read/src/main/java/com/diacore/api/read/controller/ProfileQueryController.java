@@ -1,17 +1,26 @@
 package com.diacore.api.read.controller;
 
+import com.diacore.api.model.CarbRatioHistoryPageResponse;
+import com.diacore.api.model.InsulinSensitivityHistoryPageResponse;
+import com.diacore.api.model.ProfileSnapshotHistoryResponse;
 import com.diacore.api.model.TherapyParameterResponse;
 import com.diacore.api.model.CarbRatioListResponse;
 import com.diacore.api.model.CarbRatioSegment;
 import com.diacore.api.model.InsulinSensitivityListResponse;
 import com.diacore.api.model.InsulinSensitivitySegment;
+import com.diacore.api.model.TherapySegment;
 import com.diacore.api.operation.ProfileQueryApi;
+import com.diacore.application.usecase.profile.GetCarbRatioHistory;
 import com.diacore.application.usecase.profile.GetCarbRatioProfile;
+import com.diacore.application.usecase.profile.GetInsulinSensitivityHistory;
 import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile;
 import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile.Request;
 import com.diacore.application.usecase.profile.GetTherapyParameters;
 import com.diacore.application.usecase.profile.GetTherapyParameters.Response;
+import com.diacore.domain.common.model.PageResult;
+import com.diacore.domain.profile.model.CarbRatioHistory;
 import com.diacore.domain.profile.model.CarbRatioProfile;
+import com.diacore.domain.profile.model.InsulinSensitivityHistory;
 import com.diacore.domain.profile.model.InsulinSensitivityProfile;
 import com.diacore.infrastructure.actor.ActorSelector;
 import java.util.List;
@@ -25,13 +34,18 @@ public class ProfileQueryController implements ProfileQueryApi {
     private final GetCarbRatioProfile getCarbRatioProfile;
     private final GetInsulinSensitivityProfile getInsulinSensitivityProfile;
     private final GetTherapyParameters getTherapyParameters;
+    private final GetCarbRatioHistory getCarbRatioHistory;
+    private final GetInsulinSensitivityHistory getInsulinSensitivityHistory;
 
     public ProfileQueryController(GetCarbRatioProfile getCarbRatioProfile,
                                   GetInsulinSensitivityProfile getInsulinSensitivityProfile,
-                                  GetTherapyParameters getTherapyParameters) {
+                                  GetTherapyParameters getTherapyParameters, GetCarbRatioHistory getCarbRatioHistory,
+                                  GetInsulinSensitivityHistory getInsulinSensitivityHistory) {
         this.getCarbRatioProfile = getCarbRatioProfile;
         this.getInsulinSensitivityProfile = getInsulinSensitivityProfile;
         this.getTherapyParameters = getTherapyParameters;
+        this.getCarbRatioHistory = getCarbRatioHistory;
+        this.getInsulinSensitivityHistory = getInsulinSensitivityHistory;
     }
 
     @Override
@@ -83,6 +97,71 @@ public class ProfileQueryController implements ProfileQueryApi {
                 parameters.carbRatio(),
                 parameters.insulinSensitivity()
         );
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<CarbRatioHistoryPageResponse> getCarbRatioHistory(Integer page, Integer size) {
+        PageResult<CarbRatioHistory> result = ActorSelector.current()
+                .requestTo(getCarbRatioHistory)
+                .by(new GetCarbRatioHistory.Request(page, size));
+
+        List<ProfileSnapshotHistoryResponse> content = result.content().stream()
+                .map(history -> {
+                    List<TherapySegment> mappedSegments = history.snapshotSegments().stream()
+                            .map(seg -> new TherapySegment()
+                                    .startTime(seg.startTime())
+                                    .value(seg.value()))
+                            .toList();
+
+                    return new ProfileSnapshotHistoryResponse()
+                            .snapshotSegments(mappedSegments)
+                            .changeSource(history.changeSource())
+                            .reasonText(history.reasonText())
+                            .createdAt(history.createdAt());
+                })
+                .toList();
+
+        CarbRatioHistoryPageResponse response = new CarbRatioHistoryPageResponse()
+                .content(content)
+                .totalPages(result.totalPages())
+                .totalElements(result.totalElements())
+                .size(result.size())
+                .number(result.number());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<InsulinSensitivityHistoryPageResponse> getInsulinSensitivityHistory(Integer page,
+                                                                                              Integer size) {
+        PageResult<InsulinSensitivityHistory> result = ActorSelector.current()
+                .requestTo(getInsulinSensitivityHistory)
+                .by(new GetInsulinSensitivityHistory.Request(page, size));
+
+        List<ProfileSnapshotHistoryResponse> content = result.content().stream()
+                .map(history -> {
+                    List<TherapySegment> mappedSegments = history.snapshotSegments().stream()
+                            .map(seg -> new TherapySegment()
+                                    .startTime(seg.startTime())
+                                    .value(seg.value()))
+                            .toList();
+
+                    return new ProfileSnapshotHistoryResponse()
+                            .snapshotSegments(mappedSegments)
+                            .changeSource(history.changeSource())
+                            .reasonText(history.reasonText())
+                            .createdAt(history.createdAt());
+                })
+                .toList();
+
+        InsulinSensitivityHistoryPageResponse response = new InsulinSensitivityHistoryPageResponse()
+                .content(content)
+                .totalPages(result.totalPages())
+                .totalElements(result.totalElements())
+                .size(result.size())
+                .number(result.number());
 
         return ResponseEntity.ok(response);
     }

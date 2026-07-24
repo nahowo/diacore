@@ -55,6 +55,9 @@ public class InsulinLogAdapter implements SaveInsulinLogPort, LoadInsulinPort {
         return new PageResult<>(
                 content,
                 entities.getTotalElements(),
+                entities.getNumber(),
+                entities.getTotalPages(),
+                entities.getSize(),
                 entities.getNumber()
         );
     }

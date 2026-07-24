@@ -1,5 +1,6 @@
 package com.diacore.infrastructure.entity.profile;
 
+import com.diacore.domain.profile.model.ChangeSource;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
@@ -15,14 +16,12 @@ public class TherapyIsfHistoryJpaEntity {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "start_time", nullable = false)
-    private Integer startTime;
+    @Column(name = "profile_snapshot", nullable = false, columnDefinition = "json")
+    private String profileSnapshotJson;
 
-    @Column(name = "original_value", nullable = false)
-    private Float originalValue;
-
-    @Column(name = "new_value", nullable = false)
-    private Float newValue;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "change_source", nullable = false, length = 30)
+    private ChangeSource changeSource;
 
     @Column(name = "reason_text", length = 255)
     private String reasonText;
@@ -32,21 +31,19 @@ public class TherapyIsfHistoryJpaEntity {
 
     protected TherapyIsfHistoryJpaEntity() {}
 
-    public TherapyIsfHistoryJpaEntity(Long userId, Integer startTime, Float originalValue,
-                                      Float newValue, String reasonText) {
+    public TherapyIsfHistoryJpaEntity(Long userId, String profileSnapshotJson,
+                                      ChangeSource changeSource, String reasonText) {
         this.userId = userId;
-        this.startTime = startTime;
-        this.originalValue = originalValue;
-        this.newValue = newValue;
+        this.profileSnapshotJson = profileSnapshotJson;
+        this.changeSource = changeSource != null ? changeSource : ChangeSource.MANUAL;
         this.reasonText = reasonText;
         this.createdAt = OffsetDateTime.now();
     }
 
     public Long getId() { return id; }
     public Long getUserId() { return userId; }
-    public Integer getStartTime() { return startTime; }
-    public Float getOriginalValue() { return originalValue; }
-    public Float getNewValue() { return newValue; }
+    public String getProfileSnapshotJson() { return profileSnapshotJson; }
+    public ChangeSource getChangeSource() { return changeSource; }
     public String getReasonText() { return reasonText; }
     public OffsetDateTime getCreatedAt() { return createdAt; }
 }

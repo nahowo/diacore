@@ -35,7 +35,7 @@ public class GetTherapyParametersQuery implements GetTherapyParameters {
         int hour = request.hour();
         return new GetTherapyParameters.Response(
                 hour,
-                carbRatioProfile.getRatioForTime(hour),
+                carbRatioProfile.getCarbRatioForTime(hour),
                 insulinSensitivityProfile.getInsulinSensitivityForTime(hour)
         );
     }

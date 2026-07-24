@@ -57,6 +57,9 @@ public class GlucoseLogAdapter implements SaveGlucoseLogPort, LoadGlucosePort {
         return new PageResult<>(
                 content,
                 entities.getTotalElements(),
+                entities.getNumber(),
+                entities.getTotalPages(),
+                entities.getSize(),
                 entities.getNumber()
         );
     }

@@ -1,9 +1,11 @@
 README.md
 pom.xml
 src/main/java/com/diacore/api/model/BolusRequest.java
+src/main/java/com/diacore/api/model/CarbRatioHistoryPageResponse.java
 src/main/java/com/diacore/api/model/CarbRatioListRequest.java
 src/main/java/com/diacore/api/model/CarbRatioListResponse.java
 src/main/java/com/diacore/api/model/CarbRatioSegment.java
+src/main/java/com/diacore/api/model/ChangeSource.java
 src/main/java/com/diacore/api/model/CommonResponse.java
 src/main/java/com/diacore/api/model/CreatedResponse.java
 src/main/java/com/diacore/api/model/ExerciseRequest.java
@@ -13,6 +15,7 @@ src/main/java/com/diacore/api/model/GlucoseLogResponse.java
 src/main/java/com/diacore/api/model/InsulinLogPageResponse.java
 src/main/java/com/diacore/api/model/InsulinLogRequest.java
 src/main/java/com/diacore/api/model/InsulinLogResponse.java
+src/main/java/com/diacore/api/model/InsulinSensitivityHistoryPageResponse.java
 src/main/java/com/diacore/api/model/InsulinSensitivityListRequest.java
 src/main/java/com/diacore/api/model/InsulinSensitivityListResponse.java
 src/main/java/com/diacore/api/model/InsulinSensitivitySegment.java
@@ -20,12 +23,14 @@ src/main/java/com/diacore/api/model/LoginUserRequest.java
 src/main/java/com/diacore/api/model/MealLogPageResponse.java
 src/main/java/com/diacore/api/model/MealLogRequest.java
 src/main/java/com/diacore/api/model/MealLogResponse.java
+src/main/java/com/diacore/api/model/ProfileSnapshotHistoryResponse.java
 src/main/java/com/diacore/api/model/RecommendationResponse.java
 src/main/java/com/diacore/api/model/RegisterUserRequest.java
 src/main/java/com/diacore/api/model/SimulationResponse.java
 src/main/java/com/diacore/api/model/TherapyParameterResponse.java
 src/main/java/com/diacore/api/model/TherapyParametersRequest.java
 src/main/java/com/diacore/api/model/TherapyParametersResponse.java
+src/main/java/com/diacore/api/model/TherapySegment.java
 src/main/java/com/diacore/api/model/TokenResponse.java
 src/main/java/com/diacore/api/operation/ApiUtil.java
 src/main/java/com/diacore/api/operation/LogCommandApi.java

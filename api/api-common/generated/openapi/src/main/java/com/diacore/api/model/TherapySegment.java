@@ -12,35 +12,35 @@ import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
- * IsfSegment
+ * TherapySegment
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-23T10:59:47.627344+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public class IsfSegment {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-24T14:39:54.676685+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+public class TherapySegment {
 
   private Integer startTime;
 
   private Float value;
 
-  public IsfSegment() {
+  public TherapySegment() {
     super();
   }
 
   /**
    * Constructor with only required parameters
    */
-  public IsfSegment(Integer startTime, Float value) {
+  public TherapySegment(Integer startTime, Float value) {
     this.startTime = startTime;
     this.value = value;
   }
 
-  public IsfSegment startTime(Integer startTime) {
+  public TherapySegment startTime(Integer startTime) {
     this.startTime = startTime;
     return this;
   }
 
   /**
-   * 시작 시간 (0~23)
+   * 적용 시작 시간 (0~23)
    * @return startTime
   */
   @NotNull
@@ -53,13 +53,13 @@ public class IsfSegment {
     this.startTime = startTime;
   }
 
-  public IsfSegment value(Float value) {
+  public TherapySegment value(Float value) {
     this.value = value;
     return this;
   }
 
   /**
-   * 인슐린 민감도 (mg/dL/U)
+   * 설정 값 (CR의 경우 g/U, ISF의 경우 mg/dL/U)
    * @return value
   */
   @NotNull
@@ -80,9 +80,9 @@ public class IsfSegment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IsfSegment isfSegment = (IsfSegment) o;
-    return Objects.equals(this.startTime, isfSegment.startTime) &&
-        Objects.equals(this.value, isfSegment.value);
+    TherapySegment therapySegment = (TherapySegment) o;
+    return Objects.equals(this.startTime, therapySegment.startTime) &&
+        Objects.equals(this.value, therapySegment.value);
   }
 
   @Override
@@ -93,7 +93,7 @@ public class IsfSegment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IsfSegment {\n");
+    sb.append("class TherapySegment {\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");

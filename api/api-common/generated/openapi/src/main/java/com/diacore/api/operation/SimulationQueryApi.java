@@ -5,9 +5,8 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.BolusRequest;
-import com.diacore.api.model.ExerciseRequest;
-import com.diacore.api.model.SimulationResponse;
+import com.diacore.api.model.GlucoseSimulationRequest;
+import com.diacore.api.model.GlucoseSimulationResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-24T14:39:54.676685+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-28T21:19:11.515491+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface SimulationQueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -28,55 +27,25 @@ public interface SimulationQueryApi {
     }
 
     /**
-     * POST /api/v1/simulations/bolus : calculate bolus
+     * POST /api/v1/simulations/predict : predict glucose
      *
-     * @param bolusRequest  (required)
+     * @param glucoseSimulationRequest  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/api/v1/simulations/bolus",
+        value = "/api/v1/simulations/predict",
         produces = { "application/json" },
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<SimulationResponse> calculateBolus(
-         @RequestBody BolusRequest bolusRequest
+    default ResponseEntity<GlucoseSimulationResponse> predictGlucose(
+         @RequestBody GlucoseSimulationRequest glucoseSimulationRequest
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"recommendedCarbsG\" : 6, \"predictedBg\" : 0, \"recommendedBolus\" : 1.4658129 }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * POST /api/v1/simulations/exercise : predict exercise impact
-     *
-     * @param exerciseRequest  (required)
-     * @return success (status code 200)
-     */
-    @RequestMapping(
-        method = RequestMethod.POST,
-        value = "/api/v1/simulations/exercise",
-        produces = { "application/json" },
-        consumes = { "application/json" }
-    )
-    
-    default ResponseEntity<SimulationResponse> predictExerciseImpact(
-         @RequestBody ExerciseRequest exerciseRequest
-    ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"recommendedCarbsG\" : 6, \"predictedBg\" : 0, \"recommendedBolus\" : 1.4658129 }";
+                    String exampleString = "{ \"recommendedAction\" : { \"suggestedValue\" : 15.0, \"message\" : \"고강도 운동 전 저혈당 예방을 위해 15g의 탄수화물 섭취를 권장합니다.\" }, \"reason\" : \"BG 125, IOB 1.2. Planned exercise HIGH reduces ISF. 15g carbs needed to stay above 90.\", \"eventualBg\" : 110, \"trajectories\" : [ { \"zeroTempPred\" : 1, \"offsetMinutes\" : 15, \"uamPred\" : 5, \"cobPred\" : 6, \"simulatedPred\" : 5, \"iobPred\" : 0 }, { \"zeroTempPred\" : 1, \"offsetMinutes\" : 15, \"uamPred\" : 5, \"cobPred\" : 6, \"simulatedPred\" : 5, \"iobPred\" : 0 } ], \"snoozeBg\" : 95 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

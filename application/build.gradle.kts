@@ -11,6 +11,7 @@ dependencies {
     "implementation"(project(":domain:log"))
     "implementation"(project(":domain:user"))
     "implementation"(project(":domain:profile"))
+    "implementation"(project(":domain:simulation"))
     "implementation"(project(":api:api-common"))
     "implementation"("org.springframework.boot:spring-boot-starter-web")
     "implementation"("org.springframework.boot:spring-boot-starter-security")

@@ -8,6 +8,7 @@ dependencies {
     "implementation"(project(":domain:common"))
     "implementation"(project(":domain:log"))
     "implementation"(project(":domain:profile"))
+    "implementation"(project(":domain:simulation"))
     "implementation"(project(":application"))
     "implementation"(project(":infrastructure"))
     "implementation"("org.springframework.boot:spring-boot-starter-web")

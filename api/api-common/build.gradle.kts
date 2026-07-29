@@ -9,6 +9,8 @@ dependencies {
     compileOnly("jakarta.annotation:jakarta.annotation-api:2.1.1")
     implementation(project(":domain:common"))
     implementation(project(":domain:profile"))
+    implementation(project(":domain:user"))
+    implementation(project(":domain:simulation"))
 }
 
 openApiGenerate {
@@ -32,11 +34,15 @@ openApiGenerate {
     ))
 
     typeMappings.set(mapOf(
-        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource"
+        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource",
+        "ExerciseIntensity" to "com.diacore.domain.simulation.model.ExerciseIntensity",
+        "ActionType" to "com.diacore.domain.simulation.model.ActionType"
     ))
 
     importMappings.set(mapOf(
-        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource"
+        "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource",
+        "ExerciseIntensity" to "com.diacore.domain.simulation.model.ExerciseIntensity",
+        "ActionType" to "com.diacore.domain.simulation.model.ActionType"
     ))
 }
 

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * 변경 출처 (MANUAL: 수동 입력, AI_RECOMMENDED: AI 추천값 적용)
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-24T14:39:54.676685+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-28T21:19:11.515491+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public enum ChangeSource {
   
   MANUAL("MANUAL"),

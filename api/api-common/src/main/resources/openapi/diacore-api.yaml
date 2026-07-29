@@ -284,45 +284,25 @@ paths:
   # ==========================================
   # Simulation
   # ==========================================
-  /api/v1/simulations/exercise:
+  /api/v1/simulations/predict:
     post:
       tags:
         - SimulationQuery
-      summary: predict exercise impact
-      operationId: predictExerciseImpact
+      summary: predict glucose
+      operationId: predictGlucose
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExerciseRequest'
+              $ref: '#/components/schemas/GlucoseSimulationRequest'
       responses:
         '200':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SimulationResponse'
-
-  /api/v1/simulations/bolus:
-    post:
-      tags:
-        - SimulationQuery
-      summary: calculate bolus
-      operationId: calculateBolus
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BolusRequest'
-      responses:
-        '200':
-          description: success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SimulationResponse'
+                $ref: '#/components/schemas/GlucoseSimulationResponse'
 
   # ==========================================
   # User
@@ -512,42 +492,123 @@ components:
           type: string
           example: "최근 7일간 아침 식후 고혈당 지속"
 
-    ExerciseRequest:
+    GlucoseSimulationRequest:
       type: object
-      required: [exerciseType, durationMinutes, currentBg]
+      required: [ currentGlucose, iob, cob ]
       properties:
-        exerciseType:
-          type: string
-          example: "RUNNING"
-        durationMinutes:
+        currentGlucose:
           type: integer
-        currentBg:
-          type: integer
-
-    BolusRequest:
-      type: object
-      required: [currentBg, targetBg, mealCarbsG]
-      properties:
-        currentBg:
-          type: integer
-        targetBg:
-          type: integer
-        mealCarbsG:
-          type: integer
-
-    SimulationResponse:
-      type: object
-      properties:
-        predictedBg:
-          type: integer
-          description: "result glucose"
-        recommendedCarbsG:
-          type: integer
-          description: "recommended carb (g)"
-        recommendedBolus:
+          description: "현재 혈당 수치 (mg/dL)"
+          example: 125
+        iob:
           type: number
           format: float
-          description: "recommended insulin (Unit)"
+          description: "활성 인슐린 (Insulin On Board, U)"
+          example: 1.2
+        cob:
+          type: number
+          format: float
+          description: "활성 탄수화물 (Carbs On Board, g)"
+          example: 20.0
+        bgMomentum:
+          type: integer
+          description: "최근 혈당 변화율 (mg/dL / 5min) - 옵션"
+          example: -5
+        plannedCarbs:
+          type: float
+          description: "섭취 예정인 탄수화물 양 (g)"
+          example: 15
+        plannedInsulin:
+          type: number
+          format: float
+          description: "주입 예정인 인슐린 볼러스 (U)"
+          example: 0.0
+        plannedExercise:
+          $ref: '#/components/schemas/ExerciseSimulationEvent'
+
+    ExerciseSimulationEvent:
+      type: object
+      required: [ intensity, durationMinutes ]
+      properties:
+        intensity:
+          $ref: '#/components/schemas/ExerciseIntensity'
+        durationMinutes:
+          type: integer
+          description: "예상 지속 시간 (분)"
+          example: 45
+
+    ExerciseIntensity:
+      type: string
+      enum: [ LOW, MEDIUM, HIGH ]
+      description: "운동 강도"
+
+    GlucoseSimulationResponse:
+      type: object
+      required: [ reason, eventualBg, trajectories ]
+      properties:
+        reason:
+          type: string
+          description: "OpenAPS Reason"
+          example: "BG 125, IOB 1.2. Planned exercise HIGH reduces ISF. 15g carbs needed to stay above 90."
+        eventualBg:
+          type: integer
+          description: "IOB와 COB가 모두 소모된 후 도달할 최종 예상 혈당"
+          example: 110
+        snoozeBg:
+          type: integer
+          description: "단기적 과잉 교정을 막기 위한 참고 혈당"
+          example: 95
+        recommendedAction:
+          $ref: '#/components/schemas/RecommendedAction'
+        trajectories:
+          type: array
+          description: "시간(5분 단위)에 따른 다중 예측 곡선 포인트 리스트"
+          items:
+            $ref: '#/components/schemas/PredictionTrajectoryPoint'
+
+    RecommendedAction:
+      type: object
+      required: [ actionType ]
+      properties:
+        actionType:
+          $ref: '#/components/schemas/ActionType'
+        suggestedValue:
+          type: number
+          format: float
+          description: "액션에 따른 수치 (기초율 u/hr, 볼러스 U, 또는 탄수화물 g)"
+          example: 15.0
+        message:
+          type: string
+          example: "고강도 운동 전 저혈당 예방을 위해 15g의 탄수화물 섭취를 권장합니다."
+
+    ActionType:
+      type: string
+      enum: [ MAINTAIN, TEMP_BASAL, SMB, SUSPEND, CARB_SUGGESTION ]
+      description: "권장되는 조치 유형"
+
+    PredictionTrajectoryPoint:
+      type: object
+      required: [ offsetMinutes ]
+      properties:
+        offsetMinutes:
+          type: integer
+          description: "현재 시점으로부터의 경과 시간 (보통 5분 단위)"
+          example: 15
+        iobPred:
+          type: integer
+          description: "IOB 기반 예측 수치 (인슐린만 작용할 때)"
+        cobPred:
+          type: integer
+          description: "COB 기반 예측 수치 (남은 탄수화물 흡수 시)"
+        zeroTempPred:
+          type: integer
+          description: "인슐린 주입 완전 중단(Zero-temp) 시 예상 수치"
+        uamPred:
+          type: integer
+          description: "미식별 활동(UAM) 감지 시 예측 수치"
+        simulatedPred:
+          type: integer
+          description: "사용자가 입력한 식사/인슐린/운동 시나리오를 반영한 최종 시뮬레이션 예측 수치"
 
     RegisterUserRequest:
       type: object

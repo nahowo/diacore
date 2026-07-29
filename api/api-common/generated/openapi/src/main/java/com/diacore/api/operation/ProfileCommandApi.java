@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-28T21:19:11.515491+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T12:07:51.538550+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {

@@ -33,6 +33,8 @@ public class SimulationQueryController implements SimulationQueryApi {
                 .by(new Request(
                         request.getCurrentGlucose(),
                         request.getBgMomentum(),
+                        request.getIob(),
+                        request.getCob(),
                         request.getPlannedCarbs(),
                         request.getPlannedInsulin(),
                         toExerciseRequest(request.getPlannedExercise())

@@ -5,8 +5,7 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.LoginUserRequest;
-import com.diacore.api.model.TokenResponse;
+import com.diacore.api.model.NightscoutEntry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,37 +19,27 @@ import java.util.Optional;
 import jakarta.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T12:07:51.538550+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
-public interface UserQueryApi {
+public interface EntriesCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * POST /api/v1/users/login : Login
+     * POST /api/v1/entries : Nightscout 호환 CGM 데이터 수신
      *
-     * @param loginUserRequest  (required)
+     * @param nightscoutEntry  (required)
      * @return success (status code 200)
      */
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/api/v1/users/login",
-        produces = { "application/json" },
+        value = "/api/v1/entries",
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<TokenResponse> loginUser(
-         @RequestBody LoginUserRequest loginUserRequest
+    default ResponseEntity<Void> ingestNightscoutEntries(
+         @RequestBody List<NightscoutEntry> nightscoutEntry
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

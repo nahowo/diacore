@@ -26,6 +26,7 @@ src/main/java/com/diacore/api/model/LoginUserRequest.java
 src/main/java/com/diacore/api/model/MealLogPageResponse.java
 src/main/java/com/diacore/api/model/MealLogRequest.java
 src/main/java/com/diacore/api/model/MealLogResponse.java
+src/main/java/com/diacore/api/model/NightscoutEntry.java
 src/main/java/com/diacore/api/model/PredictionTrajectoryPoint.java
 src/main/java/com/diacore/api/model/ProfileSnapshotHistoryResponse.java
 src/main/java/com/diacore/api/model/RecommendationResponse.java
@@ -37,6 +38,7 @@ src/main/java/com/diacore/api/model/TherapyParametersResponse.java
 src/main/java/com/diacore/api/model/TherapySegment.java
 src/main/java/com/diacore/api/model/TokenResponse.java
 src/main/java/com/diacore/api/operation/ApiUtil.java
+src/main/java/com/diacore/api/operation/EntriesCommandApi.java
 src/main/java/com/diacore/api/operation/LogCommandApi.java
 src/main/java/com/diacore/api/operation/LogQueryApi.java
 src/main/java/com/diacore/api/operation/ProfileCommandApi.java

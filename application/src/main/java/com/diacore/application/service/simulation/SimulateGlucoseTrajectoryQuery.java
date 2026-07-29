@@ -9,20 +9,14 @@ import com.diacore.domain.profile.model.CarbRatioProfile;
 import com.diacore.domain.profile.model.InsulinSensitivityProfile;
 import com.diacore.domain.profile.port.out.LoadCarbRatioProfilePort;
 import com.diacore.domain.profile.port.out.LoadInsulinSensitivityProfilePort;
-import com.diacore.domain.simulation.model.CalculatedIobCob;
 import com.diacore.domain.simulation.model.ExerciseEvent;
-import com.diacore.domain.simulation.model.Insulin;
-import com.diacore.domain.simulation.model.Meal;
 import com.diacore.domain.simulation.model.RecommendedAction;
 import com.diacore.domain.simulation.model.SimulationContext;
 import com.diacore.domain.simulation.model.SimulationResult;
 import com.diacore.domain.simulation.model.TrajectoryPoint;
-import com.diacore.domain.simulation.port.out.LoadRecentTreatmentPort;
 import com.diacore.domain.simulation.port.out.RequestGlucosePredictionPort;
-import com.diacore.domain.simulation.service.IobCobCalculatorService;
 import com.diacore.exception.BusinessException;
 import com.diacore.exception.ErrorCode;
-import java.time.Instant;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -33,28 +27,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class SimulateGlucoseTrajectoryQuery implements SimulateGlucoseTrajectory {
     private final RequestGlucosePredictionPort requestGlucosePredictionPort;
-    private final IobCobCalculatorService iobCobCalculatorService;
     private final LoadCarbRatioProfilePort loadCarbRatioProfilePort;
     private final LoadInsulinSensitivityProfilePort loadInsulinSensitivityProfilePort;
-    private final LoadRecentTreatmentPort loadRecentTreatmentPort;
 
     public SimulateGlucoseTrajectoryQuery(RequestGlucosePredictionPort requestGlucosePredictionPort,
-                                          IobCobCalculatorService iobCobCalculatorService,
                                           LoadCarbRatioProfilePort loadCarbRatioProfilePort,
-                                          LoadInsulinSensitivityProfilePort loadInsulinSensitivityProfilePort,
-                                          LoadRecentTreatmentPort loadRecentTreatmentPort) {
+                                          LoadInsulinSensitivityProfilePort loadInsulinSensitivityProfilePort) {
         this.requestGlucosePredictionPort = requestGlucosePredictionPort;
-        this.iobCobCalculatorService = iobCobCalculatorService;
         this.loadCarbRatioProfilePort = loadCarbRatioProfilePort;
         this.loadInsulinSensitivityProfilePort = loadInsulinSensitivityProfilePort;
-        this.loadRecentTreatmentPort = loadRecentTreatmentPort;
     }
 
     @Override
     public Response execute(Actor actor, Request request) {
         Long userId = actor.userId();
         int currentHour = LocalTime.now(ZoneId.of("Asia/Seoul")).getHour(); // TODO
-        Instant now = Instant.now();
         // 1. 사용자 현재 iob, cob, isf, cr 값 가져오기
         CarbRatioProfile carbRatioProfile = loadCarbRatioProfilePort.loadByUserId(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.THERAPY_CR_NOT_FOUND));
@@ -63,20 +50,12 @@ public class SimulateGlucoseTrajectoryQuery implements SimulateGlucoseTrajectory
         Float currentCr = carbRatioProfile.getCarbRatioForTime(currentHour);
         Float currentIsf = insulinSensitivityProfile.getInsulinSensitivityForTime(currentHour);
 
-        List<Insulin> insulinRecords = loadRecentTreatmentPort.loadInsulinSince(userId, now.minusSeconds(6 * 3600));
-        List<Meal> mealRecords = loadRecentTreatmentPort.loadMealsSince(userId, now.minusSeconds(6 * 3600));
-        CalculatedIobCob calculatedState = iobCobCalculatorService.calculate(
-                insulinRecords,
-                mealRecords,
-                now
-        );
-
         // 2. 해당 값을 묶어서 어댑터로 전달
         SimulationContext context = new SimulationContext(
                 userId,
                 request.currentGlucose(),
-                calculatedState.iob(),
-                calculatedState.cob(),
+                request.iob(),
+                request.cob(),
                 currentCr,
                 currentIsf,
                 request.bgMomentum(),

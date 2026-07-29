@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class GlucosePredictionAdapter implements RequestGlucosePredictionPort {
+public class Oref0LambdaAdapter implements RequestGlucosePredictionPort {
     private final RestClient restClient;
 
-    public GlucosePredictionAdapter(@Value("${simulation.lambda.url}") String serverUrl) {
+    public Oref0LambdaAdapter(@Value("${simulation.lambda.url}") String serverUrl) {
         this.restClient = RestClient.builder()
                 .baseUrl(serverUrl)
                 .build();
@@ -20,7 +20,7 @@ public class GlucosePredictionAdapter implements RequestGlucosePredictionPort {
     @Override
     public SimulationResult predict(SimulationContext context) {
         return restClient.post()
-                .uri("/api/predict") // TODO
+                .uri("/")
                 .body(context)
                 .retrieve()
                 .body(SimulationResult.class);

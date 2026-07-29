@@ -357,6 +357,27 @@ paths:
         '204':
           description: success
 
+  # ==========================================
+  # NightScout
+  # ==========================================
+  /api/v1/entries:
+    post:
+      tags:
+        - EntriesCommand
+      summary: Nightscout 호환 CGM 데이터 수신
+      operationId: ingestNightscoutEntries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/NightscoutEntry'
+      responses:
+        '200':
+          description: success
+
 components:
   schemas:
     CommonResponse:
@@ -887,3 +908,31 @@ components:
           format: float
           description: "설정 값 (CR의 경우 g/U, ISF의 경우 mg/dL/U)"
           example: 12.0
+
+    NightscoutEntry:
+      type: object
+      description: "Nightscout 업로더(xDrip, Nightscout4iOS 등)가 전송하는 데이터 포맷"
+      properties:
+        type:
+          type: string
+          example: "sgv"
+        sgv:
+          type: integer
+          description: "혈당 수치"
+          example: 125
+        direction:
+          type: string
+          description: "추세 화살표"
+          example: "Flat"
+        device:
+          type: string
+          example: "Nightscout4iOS"
+        dateString:
+          type: string
+          format: date-time
+          example: "2026-07-29T11:53:20.000Z"
+        date:
+          type: integer
+          format: int64
+          description: "Unix timestamp (ms)"
+          example: 1690592000000

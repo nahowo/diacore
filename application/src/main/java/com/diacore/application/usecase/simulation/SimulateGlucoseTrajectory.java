@@ -9,6 +9,8 @@ public interface SimulateGlucoseTrajectory extends UseCase<SimulateGlucoseTrajec
     record Request(
             int currentGlucose,
             Integer bgMomentum,
+            Float iob,
+            Float cob,
             Float plannedCarb,
             Float plannedInsulin,
             ExerciseRequest plannedExercise

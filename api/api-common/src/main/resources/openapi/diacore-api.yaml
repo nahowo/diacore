@@ -228,11 +228,77 @@ paths:
             default: 20
       responses:
         '200':
-          description: Success
+          description: success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/InsulinSensitivityHistoryPageResponse'
+
+  /api/v1/profiles/basal:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get basal insulin dose
+      operationId: getBasalDose
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasalProfileResponse'
+
+    put:
+      tags:
+        - ProfileCommand
+      summary: update basal insulin dose
+      operationId: updateBasalDose
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBasalProfileRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BasalProfileResponse'
+
+  /api/v1/profiles/insulin-characteristics:
+    get:
+      tags:
+        - ProfileQuery
+      summary: get insulin characteristics
+      operationId: getInsulinCharacteristics
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsulinCharacteristicsResponse'
+
+    put:
+      tags:
+        - ProfileCommand
+      summary: update insulin characteristics
+      operationId: updateInsulinCharacteristics
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInsulinCharacteristicsRequest'
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsulinCharacteristicsResponse'
 
   /api/v1/profiles/parameters:
     get:
@@ -936,3 +1002,79 @@ components:
           format: int64
           description: "Unix timestamp (ms)"
           example: 1690592000000
+
+    BasalProfileResponse:
+      type: object
+      required:
+        - dailyBasalUnits
+        - basalInsulinName
+      properties:
+        dailyBasalUnits:
+          type: number
+          format: float
+          description: "하루 총 기저 인슐린 용량 (U)"
+          example: 10.0
+        basalInsulinName:
+          $ref: '#/components/schemas/BasalInsulinName'
+        updatedAt:
+          type: string
+          format: date-time
+
+    UpdateBasalProfileRequest:
+      type: object
+      required:
+        - dailyBasalUnits
+        - insulinName
+      properties:
+        dailyBasalUnits:
+          type: number
+          format: float
+          description: "하루 총 기저 인슐린 용량 (U)"
+          example: 7.0
+        basalInsulinName:
+          $ref: '#/components/schemas/BasalInsulinName'
+
+    InsulinCharacteristicsResponse:
+      type: object
+      required:
+        - diaHours
+        - peakMinutes
+      properties:
+        diaHours:
+          type: number
+          format: float
+          description: "인슐린 지속 시간 (Duration of Insulin Action, 시간 단위)"
+          example: 4.0
+        peakMinutes:
+          type: integer
+          description: "인슐린 최대 작용 시점 (Peak, 분 단위 - 예: 속효성 보통 60~90분)"
+          example: 75
+        updatedAt:
+          type: string
+          format: date-time
+
+    UpdateInsulinCharacteristicsRequest:
+      type: object
+      required:
+        - diaHours
+        - peakMinutes
+      properties:
+        diaHours:
+          type: number
+          format: float
+          description: "인슐린 지속 시간 (시간 단위, 보통 3~6시간)"
+          example: 4.0
+        peakMinutes:
+          type: integer
+          description: "인슐린 최대 작용 시점 (분 단위)"
+          example: 75
+
+    BasalInsulinName:
+      type: string
+      enum:
+        - TRESIBA
+        - LANTUS
+        - TOUJEO
+        - LEVEMIR
+        - OTHER
+      description: "기저 인슐린 종류"

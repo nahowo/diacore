@@ -5,8 +5,12 @@
  */
 package com.diacore.api.operation;
 
+import com.diacore.api.model.BasalProfileResponse;
 import com.diacore.api.model.CarbRatioListRequest;
+import com.diacore.api.model.InsulinCharacteristicsResponse;
 import com.diacore.api.model.InsulinSensitivityListRequest;
+import com.diacore.api.model.UpdateBasalProfileRequest;
+import com.diacore.api.model.UpdateInsulinCharacteristicsRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +23,42 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T12:07:51.538550+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T16:05:14.336232+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    /**
+     * PUT /api/v1/profiles/basal : update basal insulin dose
+     *
+     * @param updateBasalProfileRequest  (required)
+     * @return success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        value = "/api/v1/profiles/basal",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    
+    default ResponseEntity<BasalProfileResponse> updateBasalDose(
+         @RequestBody UpdateBasalProfileRequest updateBasalProfileRequest
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"dailyBasalUnits\" : 10.0, \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * PUT /api/v1/profiles/carb-ratios : update carb ratios (시간대별 탄수비 일괄 수정)
@@ -41,6 +75,36 @@ public interface ProfileCommandApi {
     default ResponseEntity<Void> updateCarbRatios(
          @RequestBody CarbRatioListRequest carbRatioListRequest
     ) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * PUT /api/v1/profiles/insulin-characteristics : update insulin characteristics
+     *
+     * @param updateInsulinCharacteristicsRequest  (required)
+     * @return success (status code 200)
+     */
+    @RequestMapping(
+        method = RequestMethod.PUT,
+        value = "/api/v1/profiles/insulin-characteristics",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    
+    default ResponseEntity<InsulinCharacteristicsResponse> updateInsulinCharacteristics(
+         @RequestBody UpdateInsulinCharacteristicsRequest updateInsulinCharacteristicsRequest
+    ) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"peakMinutes\" : 75, \"diaHours\" : 4.0, \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

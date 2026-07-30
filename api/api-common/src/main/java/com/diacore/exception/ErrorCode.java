@@ -15,7 +15,9 @@ public enum ErrorCode {
     UNAUTHORIZED_USER(HttpStatus.UNAUTHORIZED, "U004", "인증 정보가 없습니다. 로그인이 필요합니다."),
 
     THERAPY_CR_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "탄수비 설정이 없습니다."),
-    THERAPY_ISF_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "인슐린 민감도 설정이 없습니다.");
+    THERAPY_ISF_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "인슐린 민감도 설정이 없습니다."),
+    THERAPY_BASAL_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "기저 인슐린 설정이 없습니다."),
+    THERAPY_IC_NOT_FOUND(HttpStatus.NOT_FOUND, "T001", "인슐린 약동학 설정이 없습니다.");
 
     private final HttpStatus status;
     private final String code;

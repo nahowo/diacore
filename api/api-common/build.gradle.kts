@@ -35,12 +35,14 @@ openApiGenerate {
 
     typeMappings.set(mapOf(
         "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource",
+        "BasalInsulinName" to "com.diacore.domain.profile.model.BasalInsulinName",
         "ExerciseIntensity" to "com.diacore.domain.simulation.model.ExerciseIntensity",
         "ActionType" to "com.diacore.domain.simulation.model.ActionType"
     ))
 
     importMappings.set(mapOf(
         "ChangeSource" to "com.diacore.domain.profile.model.ChangeSource",
+        "BasalInsulinName" to "com.diacore.domain.profile.model.BasalInsulinName",
         "ExerciseIntensity" to "com.diacore.domain.simulation.model.ExerciseIntensity",
         "ActionType" to "com.diacore.domain.simulation.model.ActionType"
     ))

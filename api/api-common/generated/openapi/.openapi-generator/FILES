@@ -1,6 +1,8 @@
 README.md
 pom.xml
 src/main/java/com/diacore/api/model/ActionType.java
+src/main/java/com/diacore/api/model/BasalInsulinName.java
+src/main/java/com/diacore/api/model/BasalProfileResponse.java
 src/main/java/com/diacore/api/model/CarbRatioHistoryPageResponse.java
 src/main/java/com/diacore/api/model/CarbRatioListRequest.java
 src/main/java/com/diacore/api/model/CarbRatioListResponse.java
@@ -15,6 +17,7 @@ src/main/java/com/diacore/api/model/GlucoseLogRequest.java
 src/main/java/com/diacore/api/model/GlucoseLogResponse.java
 src/main/java/com/diacore/api/model/GlucoseSimulationRequest.java
 src/main/java/com/diacore/api/model/GlucoseSimulationResponse.java
+src/main/java/com/diacore/api/model/InsulinCharacteristicsResponse.java
 src/main/java/com/diacore/api/model/InsulinLogPageResponse.java
 src/main/java/com/diacore/api/model/InsulinLogRequest.java
 src/main/java/com/diacore/api/model/InsulinLogResponse.java
@@ -37,6 +40,8 @@ src/main/java/com/diacore/api/model/TherapyParametersRequest.java
 src/main/java/com/diacore/api/model/TherapyParametersResponse.java
 src/main/java/com/diacore/api/model/TherapySegment.java
 src/main/java/com/diacore/api/model/TokenResponse.java
+src/main/java/com/diacore/api/model/UpdateBasalProfileRequest.java
+src/main/java/com/diacore/api/model/UpdateInsulinCharacteristicsRequest.java
 src/main/java/com/diacore/api/operation/ApiUtil.java
 src/main/java/com/diacore/api/operation/EntriesCommandApi.java
 src/main/java/com/diacore/api/operation/LogCommandApi.java

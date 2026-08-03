@@ -5,9 +5,7 @@
  */
 package com.diacore.api.operation;
 
-import com.diacore.api.model.BasalProfileResponse;
 import com.diacore.api.model.CarbRatioListRequest;
-import com.diacore.api.model.InsulinCharacteristicsResponse;
 import com.diacore.api.model.InsulinSensitivityListRequest;
 import com.diacore.api.model.UpdateBasalProfileRequest;
 import com.diacore.api.model.UpdateInsulinCharacteristicsRequest;
@@ -23,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import jakarta.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T16:05:14.336232+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-31T08:39:54.111124+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public interface ProfileCommandApi {
 
     default Optional<NativeWebRequest> getRequest() {
@@ -34,27 +32,17 @@ public interface ProfileCommandApi {
      * PUT /api/v1/profiles/basal : update basal insulin dose
      *
      * @param updateBasalProfileRequest  (required)
-     * @return success (status code 200)
+     * @return successfully updated (status code 204)
      */
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/api/v1/profiles/basal",
-        produces = { "application/json" },
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<BasalProfileResponse> updateBasalDose(
+    default ResponseEntity<Void> updateBasalDose(
          @RequestBody UpdateBasalProfileRequest updateBasalProfileRequest
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"dailyBasalUnits\" : 10.0, \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -84,27 +72,17 @@ public interface ProfileCommandApi {
      * PUT /api/v1/profiles/insulin-characteristics : update insulin characteristics
      *
      * @param updateInsulinCharacteristicsRequest  (required)
-     * @return success (status code 200)
+     * @return successfully updated (status code 204)
      */
     @RequestMapping(
         method = RequestMethod.PUT,
         value = "/api/v1/profiles/insulin-characteristics",
-        produces = { "application/json" },
         consumes = { "application/json" }
     )
     
-    default ResponseEntity<InsulinCharacteristicsResponse> updateInsulinCharacteristics(
+    default ResponseEntity<Void> updateInsulinCharacteristics(
          @RequestBody UpdateInsulinCharacteristicsRequest updateInsulinCharacteristicsRequest
     ) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"peakMinutes\" : 75, \"diaHours\" : 4.0, \"updatedAt\" : \"2000-01-23T04:56:07.000+00:00\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }

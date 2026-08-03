@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * 권장되는 조치 유형
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-29T16:05:14.336232+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-07-31T08:39:54.111124+09:00[Asia/Seoul]", comments = "Generator version: 7.5.0")
 public enum ActionType {
   
   MAINTAIN("MAINTAIN"),

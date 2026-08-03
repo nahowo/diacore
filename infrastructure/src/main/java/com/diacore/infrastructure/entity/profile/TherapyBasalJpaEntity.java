@@ -1,5 +1,6 @@
 package com.diacore.infrastructure.entity.profile;
 
+import com.diacore.domain.profile.model.BasalInsulinName;
 import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 
@@ -19,14 +20,14 @@ public class TherapyBasalJpaEntity {
     private Float dailyBasalUnits;
 
     @Column(name = "insulin_name", nullable = false, length = 100)
-    private String insulinName;
+    private BasalInsulinName insulinName;
 
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime timestamp;
 
     protected TherapyBasalJpaEntity() {}
 
-    public TherapyBasalJpaEntity(Long userId, Float dailyBasalUnits, String insulinName) {
+    public TherapyBasalJpaEntity(Long userId, Float dailyBasalUnits, BasalInsulinName insulinName) {
         this.userId = userId;
         this.dailyBasalUnits = dailyBasalUnits;
         this.insulinName = insulinName;
@@ -36,6 +37,6 @@ public class TherapyBasalJpaEntity {
     public Long getId() { return id; }
     public Long getUserId() { return userId; }
     public Float getDailyBasalUnits() { return dailyBasalUnits; }
-    public String getInsulinName() { return insulinName; }
+    public BasalInsulinName getInsulinName() { return insulinName; }
     public OffsetDateTime getTimestamp() { return timestamp; }
 }

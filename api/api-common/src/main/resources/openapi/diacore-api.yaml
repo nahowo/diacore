@@ -260,12 +260,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateBasalProfileRequest'
       responses:
-        '200':
-          description: success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BasalProfileResponse'
+        '204':
+          description: successfully updated
 
   /api/v1/profiles/insulin-characteristics:
     get:
@@ -293,12 +289,8 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateInsulinCharacteristicsRequest'
       responses:
-        '200':
-          description: success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InsulinCharacteristicsResponse'
+        '204':
+          description: successfully updated
 
   /api/v1/profiles/parameters:
     get:

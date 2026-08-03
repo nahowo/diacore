@@ -1,6 +1,8 @@
 package com.diacore.api.read.controller;
 
+import com.diacore.api.model.BasalProfileResponse;
 import com.diacore.api.model.CarbRatioHistoryPageResponse;
+import com.diacore.api.model.InsulinCharacteristicsResponse;
 import com.diacore.api.model.InsulinSensitivityHistoryPageResponse;
 import com.diacore.api.model.ProfileSnapshotHistoryResponse;
 import com.diacore.api.model.TherapyParameterResponse;
@@ -10,16 +12,20 @@ import com.diacore.api.model.InsulinSensitivityListResponse;
 import com.diacore.api.model.InsulinSensitivitySegment;
 import com.diacore.api.model.TherapySegment;
 import com.diacore.api.operation.ProfileQueryApi;
+import com.diacore.application.usecase.profile.GetBasalProfile;
 import com.diacore.application.usecase.profile.GetCarbRatioHistory;
 import com.diacore.application.usecase.profile.GetCarbRatioProfile;
+import com.diacore.application.usecase.profile.GetInsulinCharacteristicsProfile;
 import com.diacore.application.usecase.profile.GetInsulinSensitivityHistory;
 import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile;
 import com.diacore.application.usecase.profile.GetInsulinSensitivityProfile.Request;
 import com.diacore.application.usecase.profile.GetTherapyParameters;
 import com.diacore.application.usecase.profile.GetTherapyParameters.Response;
 import com.diacore.domain.common.model.PageResult;
+import com.diacore.domain.profile.model.BasalProfile;
 import com.diacore.domain.profile.model.CarbRatioHistory;
 import com.diacore.domain.profile.model.CarbRatioProfile;
+import com.diacore.domain.profile.model.InsulinCharacteristicsProfile;
 import com.diacore.domain.profile.model.InsulinSensitivityHistory;
 import com.diacore.domain.profile.model.InsulinSensitivityProfile;
 import com.diacore.infrastructure.actor.ActorSelector;
@@ -36,16 +42,22 @@ public class ProfileQueryController implements ProfileQueryApi {
     private final GetTherapyParameters getTherapyParameters;
     private final GetCarbRatioHistory getCarbRatioHistory;
     private final GetInsulinSensitivityHistory getInsulinSensitivityHistory;
+    private final GetBasalProfile getBasalProfile;
+    private final GetInsulinCharacteristicsProfile getInsulinCharacteristicsProfile;
 
     public ProfileQueryController(GetCarbRatioProfile getCarbRatioProfile,
                                   GetInsulinSensitivityProfile getInsulinSensitivityProfile,
                                   GetTherapyParameters getTherapyParameters, GetCarbRatioHistory getCarbRatioHistory,
-                                  GetInsulinSensitivityHistory getInsulinSensitivityHistory) {
+                                  GetInsulinSensitivityHistory getInsulinSensitivityHistory,
+                                  GetBasalProfile getBasalProfile,
+                                  GetInsulinCharacteristicsProfile getInsulinCharacteristicsProfile) {
         this.getCarbRatioProfile = getCarbRatioProfile;
         this.getInsulinSensitivityProfile = getInsulinSensitivityProfile;
         this.getTherapyParameters = getTherapyParameters;
         this.getCarbRatioHistory = getCarbRatioHistory;
         this.getInsulinSensitivityHistory = getInsulinSensitivityHistory;
+        this.getBasalProfile = getBasalProfile;
+        this.getInsulinCharacteristicsProfile = getInsulinCharacteristicsProfile;
     }
 
     @Override
@@ -162,6 +174,34 @@ public class ProfileQueryController implements ProfileQueryApi {
                 .totalElements(result.totalElements())
                 .size(result.size())
                 .number(result.number());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<BasalProfileResponse> getBasalDose() {
+        BasalProfile result = ActorSelector.current()
+                .requestTo(getBasalProfile)
+                .by(new GetBasalProfile.Request());
+
+        BasalProfileResponse response = new BasalProfileResponse(
+                result.dailyBasalUnits(),
+                result.insulinName()
+        );
+
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<InsulinCharacteristicsResponse> getInsulinCharacteristics() {
+        InsulinCharacteristicsProfile result = ActorSelector.current()
+                .requestTo(getInsulinCharacteristicsProfile)
+                .by(new GetInsulinCharacteristicsProfile.Request());
+
+        InsulinCharacteristicsResponse response = new InsulinCharacteristicsResponse(
+                result.diaHours(),
+                result.peakMinutes()
+        );
 
         return ResponseEntity.ok(response);
     }

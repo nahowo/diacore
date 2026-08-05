@@ -4,8 +4,9 @@ import com.diacore.api.model.LoginUserRequest;
 import com.diacore.api.model.TokenResponse;
 import com.diacore.api.operation.UserQueryApi;
 import com.diacore.application.usecase.user.AuthenticateUser;
-import com.diacore.domain.common.usecase.Actor;
-import com.diacore.infrastructure.actor.ActorUtil;
+import com.diacore.application.usecase.user.AuthenticateUser.Request;
+import com.diacore.application.usecase.user.AuthenticateUser.Response;
+import com.diacore.infrastructure.actor.ActorSelector;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,17 +23,17 @@ public class UserQueryController implements UserQueryApi {
 
     @Override
     public ResponseEntity<TokenResponse> loginUser(LoginUserRequest request) {
-        Actor actor = ActorUtil.anonymous();
-
-        AuthenticateUser.Request command = new AuthenticateUser.Request(
-                request.getEmail(),
-                request.getPassword()
-        );
-
-        String token = authenticateUser.execute(actor, command);
+        Response result = ActorSelector.anonymous()
+                .requestTo(authenticateUser)
+                .by(new Request(
+                        request.getEmail(),
+                        request.getPassword()
+                ));
 
         TokenResponse response = new TokenResponse()
-                .token(token);
+                .email(result.email())
+                .name(result.name())
+                .token(result.token());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

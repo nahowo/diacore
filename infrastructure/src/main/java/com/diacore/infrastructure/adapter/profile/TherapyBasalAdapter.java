@@ -19,6 +19,8 @@ public class TherapyBasalAdapter implements SaveBasalProfilePort, LoadBasalProfi
 
     @Override
     public BasalProfile save(BasalProfile basalProfile) {
+        repository.deleteAllByUserId(basalProfile.userId());
+
         TherapyBasalJpaEntity entity = new TherapyBasalJpaEntity(
                 basalProfile.userId(),
                 basalProfile.dailyBasalUnits(),

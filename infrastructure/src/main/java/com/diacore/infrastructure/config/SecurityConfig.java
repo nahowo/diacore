@@ -1,6 +1,6 @@
 package com.diacore.infrastructure.config;
 
-import com.diacore.infrastructure.jwt.JwtAuthenticationFilter;
+import com.diacore.infrastructure.token.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/v1/entries", "/api/v1/treatments", "/api/v1/status.json").permitAll()
                         .requestMatchers(
                                 "/api/v1/users/register", "/api/v1/users/login").permitAll()
                         .anyRequest().authenticated()

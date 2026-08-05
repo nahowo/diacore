@@ -730,6 +730,10 @@ components:
           type: string
           description: JWT Access Token
           example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        email:
+          type: string
+        name:
+          type: string
 
     GlucoseLogResponse:
       type: object

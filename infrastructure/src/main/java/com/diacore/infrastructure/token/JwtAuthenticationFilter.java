@@ -1,4 +1,4 @@
-package com.diacore.infrastructure.jwt;
+package com.diacore.infrastructure.token;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

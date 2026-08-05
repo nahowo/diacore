@@ -19,6 +19,8 @@ public class TherapyInsulinCharacteristicsAdapter implements SaveInsulinCharacte
 
     @Override
     public InsulinCharacteristicsProfile save(InsulinCharacteristicsProfile insulinCharacteristicsProfile) {
+        repository.deleteAllByUserId(insulinCharacteristicsProfile.userId());
+
         TherapyInsulinCharacteristicsJpaEntity entity = new TherapyInsulinCharacteristicsJpaEntity(
                 insulinCharacteristicsProfile.userId(),
                 insulinCharacteristicsProfile.diaHours(),

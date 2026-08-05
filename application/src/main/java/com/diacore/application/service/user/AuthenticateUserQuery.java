@@ -26,7 +26,7 @@ public class AuthenticateUserQuery implements AuthenticateUser {
 
     @Override
     @Transactional(readOnly = true)
-    public String execute(Actor actor, Request request) {
+    public AuthenticateUser.Response execute(Actor actor, Request request) {
         User user = loadUserPort.findByEmail(request.email())
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
@@ -34,6 +34,7 @@ public class AuthenticateUserQuery implements AuthenticateUser {
             throw new BusinessException(ErrorCode.INVALID_PASSWORD);
         }
 
-        return tokenGeneratorPort.generateToken(user.getId());
+        String token = tokenGeneratorPort.generateToken(user.getId());
+        return new Response(user.getEmail(), user.getName(), token);
     }
 }
